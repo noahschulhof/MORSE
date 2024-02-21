@@ -81,7 +81,7 @@ Executing the example run should yield a solution file at filepath `p0033_sols.c
 |C188   |-0.0 |0.9999720270642298|
 |C189   |0.0  |1.0000057960341204|
 
-Full sample output can be found [here](https://gist.github.com/noahschulhof/4ee02a64ffcc37de2f88e92f02b79319).
+Full sample output can be found [here](https://github.com/ruppinlab/MORSE/blob/main/sample_outputs/p0033_sols.csv).
 
 
 ## Parallelization
@@ -148,11 +148,11 @@ The above command will yield an aggregated solution file at the filepath `p0033_
 |1.0 |0.0 |0.0 |...|1.0 |1.0 |1.0 |1.0 |1.0 |1.0 |0.0 |-0.0|0.0 |
 |1.0 |-0.0|-0.0|...|1.0 |1.0 |1.0 |1.0 |1.0 |1.0 |-0.0|-0.0|0.0 |
 
-Full sample output can be found [here](https://gist.github.com/noahschulhof/48322e363a4ae97849a32a044cb0815d).
+Full sample output can be found [here](https://github.com/ruppinlab/MORSE/blob/main/sample_outputs/p0033_agg.csv).
 
 
 ## Sample MPS Files
-The directory `mps_files` contains 20 Mathematical Programming System (MPS) files, each of which is an ILP or MILP instance for which MORSE has been verified to find multiple distinct optima. These instances were retrieved from the Mixed Integer Programming Library ([MIPLIB](https://miplib.zib.de/)) versions 2.0 - 6.0.
+The directory [`mps_files`](https://github.com/ruppinlab/MORSE/tree/main/mps_files) contains 20 Mathematical Programming System (MPS) files, each of which is an ILP or MILP instance for which MORSE has been verified to find multiple distinct optima. These instances were retrieved from the Mixed Integer Programming Library ([MIPLIB](https://miplib.zib.de/)) versions 2.0 - 6.0.
 
 The table below gives the full list of instances, the most recent MIPLIB version in which each instance appeared, and the number of distinct optima (enumerated using the `PySCIPOpt` [`count`](https://scipopt.github.io/PySCIPOpt/docs/html/classpyscipopt_1_1scip_1_1Model.html#a5eb880efb244834d39c062297388252b) function). Distinct optima counts marked with ≥ give the number of optima enumerated by count within a 24-hour runtime; if there is no ≥, then enumeration was fully completed in runtime <24 hours and hence the number of distinct optimal solutions is exact.
 
