@@ -113,7 +113,7 @@ python3 solve.py -i p0033.mps.gz -s p0033_sols_3.csv
 python3 solve.py -i p0033.mps.gz -s p0033_sols_4.csv  
 python3 solve.py -i p0033.mps.gz -s p0033_sols_5.csv
 ```
-This script or variations thereof can subsequently be executed with a line-level parallelism tool of the user's choosing. We tested scripts produced by parallel.py on two compute farms that use the SLURM (Simple Linux Utility for Resource Management) formalism for job scheduling, biowulf at the Mational Institutes of Health and QUET at Northwestern University.
+This script (or variations thereof) can subsequently be executed with a line-level parallelism tool of the user's choosing. We tested scripts produced by `parallel.py` on two compute farms that use the `SLURM` (Simple Linux Utility for Resource Management) formalism for job scheduling: [Biowulf](https://hpc.nih.gov/systems/) at the National Institutes of Health and [Quest](https://www.it.northwestern.edu/departments/it-services-support/research/computing/quest/) at Northwestern University.
 
 
 ## Aggregating Solutions
