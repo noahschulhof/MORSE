@@ -29,14 +29,14 @@ $ conda install -c conda-forge pandas
 To use the Gurobi Optimizer, a valid license is required. A guide to the available licenses can be found [here](https://support.gurobi.com/hc/en-us/articles/12684663118993-How-do-I-obtain-a-Gurobi-license).
 
 
-## MORSE code files
-MORSE includes four code files in python. Three are top-level scripts and one has helper functions.
-solve.py -- solve one instance one time
-parallel.py -- set-up parallel runs of solve.py that are for the same instance but using different pertubation vectors
-agg.py -- aggregate solutions to collect summary data
-morse.py -- helper functions
+## MORSE Scripts
+MORSE includes four python scripts. Three are top-level scripts and one has helper functions.  
+- `solve.py` -- solve one instance one time
+- `parallel.py` -- set up parallel runs of solve.py that are for the same instance but using different pertubation vectors
+- `agg.py` -- aggregate solutions to collect summary data
+- `morse.py` -- helper functions
 
-Instructions for using solve.py, parallel.py, and agg.py can be found below.
+Instructions for using `solve.py`, `parallel.py`, and `agg.py` can be found below.
 
 ## Usage
 ```bash
@@ -48,7 +48,7 @@ $ python3 solve.py --instance_filepath instance.mps --sol_filepath solutions.csv
 ```
 
 ### Arguments to solve.py
-For solve.py and the other programs in MORSE each command-line argument has a one-letter version preceded by a single-dash (good for compact command lines) and an equivalent long form preceded by two dashes (good for remembering the purpose of each argument).
+For `solve.py` and the other programs in MORSE each command-line argument has a one-letter version preceded by a single-dash (good for compact command lines) and an equivalent long form preceded by two dashes (good for remembering the purpose of each argument).
 
 `-i, --instance_filepath` filepath to instance (in .mps or .mps.gz format)  
 `-s, --sol_filepath` filepath to solutions file [default=None]  
@@ -61,7 +61,7 @@ $ wget https://miplib2010.zib.de/miplib3/miplib3/p0033.mps.gz
 $ python3 solve.py --instance_filepath p0033.mps.gz --sol_filepath p0033_sols.csv
 ```
 
-p0033..mps.gz is one of the problem instances listed below in the subsection Sample MPS Files.
+p0033.mps.gz is one of the instances listed below in the subsection [Sample MPS Files](https://github.com/ruppinlab/MORSE?tab=readme-ov-file#sample-mps-files).
 
 ### Example Output
 Solutions are written in csv format to the filepath supplied to `--sol_filepath`; If no value is supplied, solutions will not be stored. Solution files contain the following fields:
