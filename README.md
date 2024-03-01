@@ -3,7 +3,7 @@ Author: [Noah Schulhof](mailto:nschulhof@u.northwestern.edu) with guidance from 
 
 Integer Linear Program (ILPs) and Mixed Integer Linear Programs (MILPs) are optimization problems in which a linear objective function is minimized or maximized while satisfying a set of linear constraints. All variables in ILPs are constrained to only take on integer values, while only some variables in MIPs must be integral. ILPs and MILPs often have multiple distinct optimal solutions, yet many optimization solvers struggle to efficiently explore the space of optima, returning certain solutions at disproportionately high frequencies. In the present work, we introduce `MORSE` (Multiple Optima via Random Sampling and careful choice of the parameter Epsilon), a parallelizable algorithm to efficiently generate multiple optima for ILPs and MILPs.
 
-Paramount to our method is the selection of a small value $ε$ that determines the maximum value by which we may vary the objective function coefficients, as we explain with the following example. Consider the following instance: maximizing the expression $x+y$ subject to the constraints $x,y≤2$ and $x+y≤3.5$, $x,y∈Z$. Suppose we choose $ε=0.01$. Next, we randomly generate a perturbation vector of length two (equal to the number of coefficients in the objective function) whose entries $v_1, v_2 \stackrel{\text{i.i.d.}}{\sim} \mathcal{U}(1-ε, 1+ε)$. An example of such a perturbation vector is $[0.99864, 1.00142]$. We then map the vector entries to the coefficients in the objective function, which becomes $0.99864x+1.00142y$. Without modifying the constraints, we solve the resulting instance and obtain the optimum $\{ x=1, y=2 \}$. On another execution of `MORSE`, with the same value for $ε$, suppose we randomly generate the perturbation vector $[1.00045, 0.99312]$. After mapping the vector entries to the coefficients in the objective function, and solving the instance, we obtain the optimum $\{ x=2, y=1 \}$. By executing two independent runs of `MORSE`, we can find the two distinct optima for the provided instance. To generalize this notion, for any instance with $n>1$ distinct optima, we aim to find all distinct optima in $r≥n$ independent `MORSE` runs.  
+Paramount to our method is the selection of a small value $ε$ that determines the maximum value by which we may vary the objective function coefficients, as we explain with the following example. Consider the following instance: maximizing the expression $x+y$ subject to the constraints $x,y≤2$ and $x+y≤3.5$, $x,y∈Z$. Suppose we choose $ε=0.01$. Next, we randomly generate a perturbation vector of length two (equal to the number of coefficients in the objective function) whose entries $v_1, v_2 \stackrel{\text{i.i.d.}}{\sim} \mathcal{U}(1-ε, 1+ε)$. An example of such a perturbation vector is $[0.99864, 1.00142]$. We then map the vector entries to the coefficients in the objective function, which becomes $0.99864x+1.00142y$. Without modifying the constraints, we solve the resulting instance and obtain the optimum $`\{x=1, y=2\}`$. On another execution of `MORSE`, with the same value for $ε$, suppose we randomly generate the perturbation vector $[1.00045, 0.99312]$. After mapping the vector entries to the coefficients in the objective function, and solving the instance, we obtain the optimum $`\{x=2, y=1\}`$. By executing two independent runs of `MORSE`, we can find the two distinct optima for the provided instance. To generalize this notion, for any instance with $n>1$ distinct optima, we aim to find all distinct optima in $r≥n$ independent `MORSE` runs.  
 
 If $ε$ is sufficiently small, we can prove that each optimum of the perturbed instance is an optimum of the original instance. By executing several `MORSE` runs in parallel, and aggregating the solutions found, one can explore the space of optima to any ILP or MILP.
 
@@ -29,10 +29,10 @@ $ conda install -c conda-forge pandas
 To use the Gurobi Optimizer, a valid license is required. A guide to the available licenses can be found [here](https://support.gurobi.com/hc/en-us/articles/12684663118993-How-do-I-obtain-a-Gurobi-license).
 
 
-## MORSE Scripts
+## Scripts
 MORSE includes four python scripts. Three are top-level scripts and one has helper functions.  
 - `solve.py` -- solve one instance one time
-- `parallel.py` -- set up parallel runs of solve.py that are for the same instance but using different pertubation vectors
+- `parallel.py` -- set up parallel runs of `solve.py` that are for the same instance but using different pertubation vectors
 - `agg.py` -- aggregate solutions to collect summary data
 - `morse.py` -- helper functions
 
@@ -47,13 +47,16 @@ $ python3 solve.py --instance_filepath instance.mps
 $ python3 solve.py --instance_filepath instance.mps --sol_filepath solutions.csv
 ```
 
-### Arguments to solve.py
+### Arguments to `solve.py`
 For `solve.py` and the other programs in MORSE each command-line argument has a one-letter version preceded by a single-dash (good for compact command lines) and an equivalent long form preceded by two dashes (good for remembering the purpose of each argument).
 
 `-i, --instance_filepath` filepath to instance (in .mps or .mps.gz format)  
 `-s, --sol_filepath` filepath to solutions file [default=None]  
 `-r, --random_seed` seed for Gurobi and random weights (if perturbation vector is not supplied) [default=None]  
-`-p, --perturbation_vector` perturbation vector, passed as a quote-enclosed iterable [default=None]
+`-p, --perturbation_filepath` filepath to csv file with one perturbation vector per line [default=None]  
+`-l, --perturbation_line` line in perturbation file on which the perturbation is found [default=1]
+
+If `-r`/`--random_seed` is not supplied, then no random seed nor Gurobi seed will be set. If both `-r`/`--random_seed` and `-p`/`--perturbation_filepath` are supplied, then the seed will exclusively be used to set the Gurobi seed.
 
 ### Example Run
 ```bash
@@ -61,7 +64,7 @@ $ wget https://miplib2010.zib.de/miplib3/miplib3/p0033.mps.gz
 $ python3 solve.py --instance_filepath p0033.mps.gz --sol_filepath p0033_sols.csv
 ```
 
-p0033.mps.gz is one of the instances listed below in the subsection [Sample MPS Files](https://github.com/ruppinlab/MORSE?tab=readme-ov-file#sample-mps-files).
+`p0033.mps.gz` is one of the instances listed below in the subsection [Sample MPS Files](https://github.com/ruppinlab/MORSE?tab=readme-ov-file#sample-mps-files).
 
 ### Example Output
 Solutions are written in csv format to the filepath supplied to `--sol_filepath`; If no value is supplied, solutions will not be stored. Solution files contain the following fields:
@@ -85,8 +88,20 @@ Full sample output can be found [here](https://github.com/ruppinlab/MORSE/blob/m
 
 
 ## Parallelization
-Central to MORSE is the ability to execute several runs in parallel. `parallel.py` can be used to generate parallelizable bash scripts. An example run is as follows:
+Central to MORSE is the ability to execute several runs in parallel. `parallel.py` can be used to generate parallelizable bash scripts. 
 
+### Arguments to `parallel.py`
+`-f, --script_filepath` filepath to parallelized script  
+`-i, --instance_filepath` filepath to instance (in .mps or .mps.gz format)  
+`-n, --num_runs` number of runs to be executed  
+`-s, --sol_filepath` base filepath to solutions file [default=None]  
+`-e, --executable` name of the python executable file [default=python3]  
+`-r, --seeds_filepath` filepath to csv/txt/tsv file with one seed per line [default=None]  
+`-p, --perturbation_filepath` filepath to csv file with one perturbation vector per line [default=None]
+
+If `-r`/`--seeds_filepath` is not supplied, then no random seed nor Gurobi seed will be set for any run. If both `-r`/`--seeds_filepath` and `-p`/`--perturbation_filepath` are supplied, then the seeds are exclusively used to set Gurobi seeds for each run.
+
+### Example Run
 ```bash
 $ python3 parallel.py \
     --script_filepath p0033_parallel.sh \
@@ -94,15 +109,6 @@ $ python3 parallel.py \
     --num_runs 5 \
     --sol_filepath p0033_sols.csv
 ```
-
-### Arguments to parallel.py
-`-f, --script_filepath` filepath to parallelized script  
-`-i, --instance_filepath` filepath to instance (in .mps or .mps.gz format)  
-`-n, --num_runs` number of runs to be executed  
-`-s, --sol_filepath` base filepath to solutions file [default=None]  
-`-e, --executable` name of the python executable file [default=python3]  
-`-r, --random_seeds` quote-enclosed iterable of random seeds to be used in individual runs [default=None]  
-`-p, --perturbation_filepath` filepath to csv file with one perturbation vector per line [default=None]
 
 ### Example Output
 The above command will yield the following script at the filepath `p0033_parallel.sh`
@@ -118,7 +124,8 @@ This script (or variations thereof) can subsequently be executed with a line-lev
 
 ## Aggregating Solutions
 After executing runs in parallel, the solutions found can be aggregated into a single file with the script `agg.py`.
-### Arguments to agg.py
+
+### Arguments to `agg.py`
 `-m, --match` string to match solution files  
 `-s, --sols_dir` filepath to solutions directory (defaults to working directory)  
 `-o, --output_filepath` filepath to output aggregated solutions file  
