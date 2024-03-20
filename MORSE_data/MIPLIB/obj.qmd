@@ -1,0 +1,82 @@
+```{r}
+library(tidyverse)
+library(ggpubr)
+```
+
+```{r}
+instances <- list.files('obj_vals')
+```
+
+```{r}
+merged <- tibble()
+
+for (instance in instances){
+  name <- paste('MIPLIB instance:',
+                sub("\\..*", "", instance))
+                
+  data <- read.delim(paste0('obj_vals/',
+                            instance),
+                     sep = '\t',
+                     header = FALSE)
+  
+  center <- data %>% 
+    filter(V2 == 'uniform') %>% 
+    pull(V1)
+  
+  data <- data %>% 
+    filter(V2 == 'random') %>% 
+    mutate(V1 = V1 - center,
+           instance = rep(name, nrow(data) - 1))
+  
+  merged <- rbind(merged, data)
+  
+  
+}
+```
+
+```{r}
+order_by_max <- merged %>%
+  group_by(instance) %>%
+  summarize(med = median(V1)) %>%
+  arrange(med) %>%
+  pull(instance)
+```
+
+
+```{r}
+options(scipen = 1000)
+
+merged %>% 
+  ggplot(aes(V1)) +
+  geom_density(fill = '#E41A1C') +
+  geom_segment(x = 0,
+               xend = 0,
+               y = 0,
+               yend = Inf,
+               linetype = 'dashed',
+               linewidth = 1) +
+  scale_y_continuous(labels = NULL) +
+  facet_wrap(~factor(instance, levels = order_by_max),
+             ncol = 4,
+             scales = 'free') +
+  labs(x = 'Absolute Perturbation-Induced Objective Value Change',
+       y = 'Density',
+       title = 'Distribution of Absolute Perturbation-Induced Objective Value Changes') +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5,
+                                  size = 20),
+        axis.title = element_text(size = 16),
+        panel.spacing.x = unit(2, 'lines'),
+        axis.text.x = element_text(size = 8),
+        plot.margin = unit(c(1, 1, 1, 1), 'lines'),
+        strip.background = element_rect(fill = 'grey90'),
+        strip.text = element_text(face = 'bold')) +
+  ggh4x::scale_x_facet(PANEL == 16,
+                       breaks = c(-0.000005, 0, 0.000005))
+
+ggsave('plots/obj.png',
+       bg = 'white',
+       width = 10,
+       height = 12,
+       units = 'in')
+```

@@ -1,0 +1,595 @@
+sol_number,avg_hamming,weights,Method
+1,0.0,random,Solution Pool
+2,0.004489337822671156,random,Solution Pool
+3,0.004489337822671156,random,Solution Pool
+4,0.00404040404040404,random,Solution Pool
+5,0.00404040404040404,random,Solution Pool
+6,0.0038480038480038477,random,Solution Pool
+7,0.0036075036075036075,random,Solution Pool
+8,0.0037411148522259637,random,Solution Pool
+9,0.0037411148522259637,random,Solution Pool
+10,0.0036730945821854917,random,Solution Pool
+11,0.003571064177124783,random,Solution Pool
+12,0.00345333678667012,random,Solution Pool
+13,0.00333000333000333,random,Solution Pool
+14,0.003463203463203463,random,Solution Pool
+15,0.003535353535353535,random,Solution Pool
+16,0.0035650623885918,random,Solution Pool
+17,0.0035210492726832597,random,Solution Pool
+18,0.0034654537578514186,random,Solution Pool
+19,0.0035087719298245615,random,Solution Pool
+20,0.003527336860670194,random,Solution Pool
+21,0.003527336860670194,random,Solution Pool
+22,0.003513394817742644,random,Solution Pool
+23,0.003513394817742644,random,Solution Pool
+24,0.003501683501683502,random,Solution Pool
+25,0.003480963480963481,random,Solution Pool
+26,0.00345333678667012,random,Solution Pool
+27,0.0034204478648923093,random,Solution Pool
+28,0.003449934484417243,random,Solution Pool
+29,0.0034676264561322033,random,Solution Pool
+30,0.003475616378842185,random,Solution Pool
+31,0.003475616378842185,random,Solution Pool
+32,0.003469033772064075,random,Solution Pool
+33,0.0034570301949981095,random,Solution Pool
+34,0.0034405681464504995,random,Solution Pool
+35,0.0034204478648923093,random,Solution Pool
+36,0.0033973367306700643,random,Solution Pool
+37,0.003419687630213946,random,Solution Pool
+38,0.003398810416354276,random,Solution Pool
+39,0.003418803418803419,random,Solution Pool
+40,0.003399852180339985,random,Solution Pool
+41,0.0033787350860521592,random,Solution Pool
+42,0.0034005615400964236,random,Solution Pool
+43,0.0033812401677095123,random,Solution Pool
+44,0.003401013502023603,random,Solution Pool
+45,0.0033832690837521757,random,Solution Pool
+46,0.0033638886552855097,random,Solution Pool
+47,0.003343123910499797,random,Solution Pool
+48,0.0033211937973842737,random,Solution Pool
+49,0.0033477633477633473,random,Solution Pool
+50,0.0033696441539578796,random,Solution Pool
+51,0.003387317112807309,random,Solution Pool
+52,0.0034012109483807598,random,Solution Pool
+53,0.00338817948880842,random,Solution Pool
+54,0.003373805394007414,random,Solution Pool
+55,0.0033888670252306616,random,Solution Pool
+56,0.0033754419719332,random,Solution Pool
+57,0.003389409318023958,random,Solution Pool
+58,0.003400456936400829,random,Solution Pool
+59,0.0033898305084745766,random,Solution Pool
+60,0.0034001214329083184,random,Solution Pool
+61,0.0034079558140901346,random,Solution Pool
+62,0.003399759672161106,random,Solution Pool
+63,0.0033903853348297795,random,Solution Pool
+64,0.003399378399378399,random,Solution Pool
+65,0.0033905488450942994,random,Solution Pool
+66,0.003398983046201499,random,Solution Pool
+67,0.003405432729401123,random,Solution Pool
+68,0.003398577993633407,random,Solution Pool
+69,0.0033907048399802026,random,Solution Pool
+70,0.00338190760725972,random,Solution Pool
+71,0.0033907146583202923,random,Solution Pool
+72,0.003397752256199745,random,Solution Pool
+73,0.0034031540880855946,random,Solution Pool
+74,0.003407043407043407,random,Solution Pool
+75,0.003409533935849725,random,Solution Pool
+76,0.0034061278080416836,random,Solution Pool
+77,0.003408488256973106,random,Solution Pool
+78,0.0034052523504000294,random,Solution Pool
+79,0.003407492647998977,random,Solution Pool
+80,0.003408571309805878,random,Solution Pool
+81,0.003406543605278926,random,Solution Pool
+82,0.0034036119842761037,random,Solution Pool
+83,0.003399842757272476,random,Solution Pool
+84,0.0034028426185288927,random,Solution Pool
+85,0.0034047727618179056,random,Solution Pool
+86,0.003405704555129842,random,Solution Pool
+87,0.003405704555129842,random,Solution Pool
+88,0.0034048348655090228,random,Solution Pool
+89,0.0034048348655090228,random,Solution Pool
+90,0.0034040034040034037,random,Solution Pool
+91,0.003402394706742533,random,Solution Pool
+92,0.003400059501041268,random,Solution Pool
+93,0.003397045263894955,random,Solution Pool
+94,0.003399429155308215,random,Solution Pool
+95,0.0033965384842577825,random,Solution Pool
+96,0.003393036898191537,random,Solution Pool
+97,0.003388963624604273,random,Solution Pool
+98,0.003384355476707569,random,Solution Pool
+99,0.003379247015610652,random,Solution Pool
+1,0.0,random,Random Shuffle
+2,0.004489337822671156,random,Random Shuffle
+3,0.003367003367003367,random,Random Shuffle
+4,0.00404040404040404,random,Random Shuffle
+5,0.003591470258136925,random,Random Shuffle
+6,0.00320666987333654,random,Random Shuffle
+7,0.002886002886002886,random,Random Shuffle
+8,0.0026187803965581746,random,Random Shuffle
+9,0.0023943135054246166,random,Random Shuffle
+10,0.002938475665748393,random,Random Shuffle
+11,0.0027548209366391185,random,Random Shuffle
+12,0.003108003108003108,random,Random Shuffle
+13,0.00296000296000296,random,Random Shuffle
+14,0.00320666987333654,random,Random Shuffle
+15,0.003367003367003367,random,Random Shuffle
+16,0.00326797385620915,random,Random Shuffle
+17,0.003168944345414934,random,Random Shuffle
+18,0.0033079331324945356,random,Random Shuffle
+19,0.0034024455077086655,random,Random Shuffle
+20,0.0033349366682700016,random,Random Shuffle
+21,0.003410730683457956,random,Random Shuffle
+22,0.0034601615629283613,random,Random Shuffle
+23,0.003488996242619431,random,Random Shuffle
+24,0.0034567901234567903,random,Random Shuffle
+25,0.003418803418803419,random,Random Shuffle
+26,0.00345333678667012,random,Random Shuffle
+27,0.0034204478648923093,random,Random Shuffle
+28,0.003449934484417243,random,Random Shuffle
+29,0.0034211850303804327,random,Random Shuffle
+30,0.0034466529090185004,random,Random Shuffle
+31,0.0034620397523623327,random,Random Shuffle
+32,0.003443526170798898,random,Random Shuffle
+33,0.0034210194638002126,random,Random Shuffle
+34,0.0034405681464504995,random,Random Shuffle
+35,0.0034204478648923093,random,Random Shuffle
+36,0.003437781215558993,random,Random Shuffle
+37,0.003419687630213946,random,Random Shuffle
+38,0.003398810416354276,random,Random Shuffle
+39,0.0033756367089700424,random,Random Shuffle
+40,0.003350578960335058,random,Random Shuffle
+41,0.0033787350860521592,random,Random Shuffle
+42,0.0033558173093056814,random,Random Shuffle
+43,0.0033812401677095123,random,Random Shuffle
+44,0.00336020133999932,random,Random Shuffle
+45,0.0033832690837521757,random,Random Shuffle
+46,0.0033638886552855097,random,Random Shuffle
+47,0.003343123910499797,random,Random Shuffle
+48,0.003367003367003367,random,Random Shuffle
+49,0.0033477633477633473,random,Random Shuffle
+50,0.0033696441539578796,random,Random Shuffle
+51,0.003387317112807309,random,Random Shuffle
+52,0.0033718901643429947,random,Random Shuffle
+53,0.00338817948880842,random,Random Shuffle
+54,0.003401013502023603,random,Random Shuffle
+55,0.0033888670252306616,random,Random Shuffle
+56,0.003400757786722699,random,Random Shuffle
+57,0.003389409318023958,random,Random Shuffle
+58,0.003400456936400829,random,Random Shuffle
+59,0.0033898305084745766,random,Random Shuffle
+60,0.0033780427223050174,random,Random Shuffle
+61,0.0033652228258256815,random,Random Shuffle
+62,0.0033514872224549644,random,Random Shuffle
+63,0.003336940836940837,random,Random Shuffle
+64,0.003354053354053354,random,Random Shuffle
+65,0.0033685730655427628,random,Random Shuffle
+66,0.003356343473937323,random,Random Shuffle
+67,0.0033433545286047483,random,Random Shuffle
+68,0.003329687899167865,random,Random Shuffle
+69,0.0033460903026120417,random,Random Shuffle
+70,0.0033331300936934737,random,Random Shuffle
+71,0.0033485612515346476,random,Random Shuffle
+72,0.0033618785521373038,random,Random Shuffle
+73,0.0033732362499485787,random,Random Shuffle
+74,0.0033827767161100494,random,Random Shuffle
+75,0.0033740917951444265,random,Random Shuffle
+76,0.003364701929295231,random,Random Shuffle
+77,0.003354670021336688,random,Random Shuffle
+78,0.0033440539769653693,random,Random Shuffle
+79,0.0033329071303754847,random,Random Shuffle
+80,0.0033462193956021115,random,Random Shuffle
+81,0.003357878696632084,random,Random Shuffle
+82,0.003348204347322772,random,Random Shuffle
+83,0.00335927645164593,random,Random Shuffle
+84,0.003350026879438644,random,Random Shuffle
+85,0.003360554933742348,random,Random Shuffle
+86,0.0033517028972789463,random,Random Shuffle
+87,0.0033617259322588477,random,Random Shuffle
+88,0.003353246458455856,random,Random Shuffle
+89,0.0033627998671694054,random,Random Shuffle
+90,0.003354670021336688,random,Random Shuffle
+91,0.0033637859724816245,random,Random Shuffle
+92,0.0033717256718659243,random,Random Shuffle
+93,0.0033785579427309006,random,Random Shuffle
+94,0.00338434739330596,random,Random Shuffle
+95,0.0033891547049441787,random,Random Shuffle
+96,0.003384359054462147,random,Random Shuffle
+97,0.003379046088913541,random,Random Shuffle
+98,0.003384355476707569,random,Random Shuffle
+99,0.003379247015610652,random,Random Shuffle
+1,0.006734006734006734,random,Greedy
+2,0.004489337822671156,random,Greedy
+3,0.004489337822671156,random,Greedy
+4,0.00404040404040404,random,Greedy
+5,0.00404040404040404,random,Greedy
+6,0.0038480038480038477,random,Greedy
+7,0.0038480038480038477,random,Greedy
+8,0.0037411148522259637,random,Greedy
+9,0.0037411148522259637,random,Greedy
+10,0.0036730945821854917,random,Greedy
+11,0.0036730945821854917,random,Greedy
+12,0.003626003626003626,random,Greedy
+13,0.003626003626003626,random,Greedy
+14,0.003591470258136925,random,Greedy
+15,0.003591470258136925,random,Greedy
+16,0.0035650623885918,random,Greedy
+17,0.0035650623885918,random,Greedy
+18,0.00354421407052986,random,Greedy
+19,0.00354421407052986,random,Greedy
+20,0.003527336860670194,random,Greedy
+21,0.003527336860670194,random,Greedy
+22,0.003513394817742644,random,Greedy
+23,0.003513394817742644,random,Greedy
+24,0.003501683501683502,random,Greedy
+25,0.003501683501683502,random,Greedy
+26,0.003491707195410899,random,Greedy
+27,0.003491707195410899,random,Greedy
+28,0.0034831069313827935,random,Greedy
+29,0.0034831069313827935,random,Greedy
+30,0.003475616378842185,random,Greedy
+31,0.003475616378842185,random,Greedy
+32,0.003469033772064075,random,Greedy
+33,0.003469033772064075,random,Greedy
+34,0.003463203463203463,random,Greedy
+35,0.003463203463203463,random,Greedy
+36,0.003458003458003458,random,Greedy
+37,0.003458003458003458,random,Greedy
+38,0.00345333678667012,random,Greedy
+39,0.00345333678667012,random,Greedy
+40,0.0034491254003449125,random,Greedy
+41,0.0034491254003449125,random,Greedy
+42,0.0034453057708871662,random,Greedy
+43,0.0034453057708871662,random,Greedy
+44,0.0034418256640478865,random,Greedy
+45,0.0034418256640478865,random,Greedy
+46,0.003438641736514077,random,Greedy
+47,0.003438641736514077,random,Greedy
+48,0.003435717721432007,random,Greedy
+49,0.003435717721432007,random,Greedy
+50,0.003433023040866178,random,Greedy
+51,0.003433023040866178,random,Greedy
+52,0.0034305317324185253,random,Greedy
+53,0.0034305317324185253,random,Greedy
+54,0.003428221610039792,random,Greedy
+55,0.003428221610039792,random,Greedy
+56,0.003426073601512198,random,Greedy
+57,0.003426073601512198,random,Greedy
+58,0.00342407122068139,random,Greedy
+59,0.00342407122068139,random,Greedy
+60,0.0034222001435116186,random,Greedy
+61,0.0034222001435116186,random,Greedy
+62,0.0034204478648923093,random,Greedy
+63,0.0034204478648923093,random,Greedy
+64,0.003418803418803419,random,Greedy
+65,0.003418803418803419,random,Greedy
+66,0.0034172571486004322,random,Greedy
+67,0.0034172571486004322,random,Greedy
+68,0.003415800517249793,random,Greedy
+69,0.003415800517249793,random,Greedy
+70,0.003414425949637217,random,Greedy
+71,0.003414425949637217,random,Greedy
+72,0.003413126700797934,random,Greedy
+73,0.003413126700797934,random,Greedy
+74,0.003411896745230079,random,Greedy
+75,0.003411896745230079,random,Greedy
+76,0.003410730683457956,random,Greedy
+77,0.003410730683457956,random,Greedy
+78,0.00340962366278822,random,Greedy
+79,0.00340962366278822,random,Greedy
+80,0.003408571309805878,random,Greedy
+81,0.003408571309805878,random,Greedy
+82,0.0034075696726299136,random,Greedy
+83,0.0034075696726299136,random,Greedy
+84,0.0034066151713210537,random,Greedy
+85,0.0034066151713210537,random,Greedy
+86,0.003405704555129842,random,Greedy
+87,0.003405704555129842,random,Greedy
+88,0.0034048348655090228,random,Greedy
+89,0.0034048348655090228,random,Greedy
+90,0.0034040034040034037,random,Greedy
+91,0.0034040034040034037,random,Greedy
+92,0.003403207704282973,random,Greedy
+93,0.0034016670941859686,random,Greedy
+94,0.003399429155308215,random,Greedy
+95,0.0033965384842577825,random,Greedy
+96,0.003393036898191537,random,Greedy
+97,0.003388963624604273,random,Greedy
+98,0.003384355476707569,random,Greedy
+99,0.003379247015610652,random,Greedy
+1,0.0,uniform,Solution Pool
+2,0.0,uniform,Solution Pool
+3,0.0,uniform,Solution Pool
+4,0.0,uniform,Solution Pool
+5,0.0,uniform,Solution Pool
+6,0.0,uniform,Solution Pool
+7,0.0,uniform,Solution Pool
+8,0.0,uniform,Solution Pool
+9,0.0,uniform,Solution Pool
+10,0.0,uniform,Solution Pool
+11,0.0,uniform,Solution Pool
+12,0.0,uniform,Solution Pool
+13,0.0,uniform,Solution Pool
+14,0.0,uniform,Solution Pool
+15,0.0,uniform,Solution Pool
+16,0.0,uniform,Solution Pool
+17,0.0,uniform,Solution Pool
+18,0.0,uniform,Solution Pool
+19,0.0,uniform,Solution Pool
+20,0.0,uniform,Solution Pool
+21,0.0,uniform,Solution Pool
+22,0.0,uniform,Solution Pool
+23,0.0,uniform,Solution Pool
+24,0.0,uniform,Solution Pool
+25,0.0,uniform,Solution Pool
+26,0.0,uniform,Solution Pool
+27,0.0,uniform,Solution Pool
+28,0.0,uniform,Solution Pool
+29,0.0,uniform,Solution Pool
+30,0.0,uniform,Solution Pool
+31,0.0,uniform,Solution Pool
+32,0.0,uniform,Solution Pool
+33,0.0,uniform,Solution Pool
+34,0.0,uniform,Solution Pool
+35,0.0,uniform,Solution Pool
+36,0.0,uniform,Solution Pool
+37,0.0,uniform,Solution Pool
+38,0.0,uniform,Solution Pool
+39,0.0,uniform,Solution Pool
+40,0.0,uniform,Solution Pool
+41,0.0,uniform,Solution Pool
+42,0.0,uniform,Solution Pool
+43,0.0,uniform,Solution Pool
+44,0.0,uniform,Solution Pool
+45,0.0,uniform,Solution Pool
+46,0.0,uniform,Solution Pool
+47,0.0,uniform,Solution Pool
+48,0.0,uniform,Solution Pool
+49,0.0,uniform,Solution Pool
+50,0.0,uniform,Solution Pool
+51,0.0,uniform,Solution Pool
+52,0.0,uniform,Solution Pool
+53,0.0,uniform,Solution Pool
+54,0.0,uniform,Solution Pool
+55,0.0,uniform,Solution Pool
+56,0.0,uniform,Solution Pool
+57,0.0,uniform,Solution Pool
+58,0.0,uniform,Solution Pool
+59,0.0,uniform,Solution Pool
+60,0.0,uniform,Solution Pool
+61,0.0,uniform,Solution Pool
+62,0.0,uniform,Solution Pool
+63,0.0,uniform,Solution Pool
+64,0.0,uniform,Solution Pool
+65,0.0,uniform,Solution Pool
+66,0.0,uniform,Solution Pool
+67,0.0,uniform,Solution Pool
+68,0.0,uniform,Solution Pool
+69,0.0,uniform,Solution Pool
+70,0.0,uniform,Solution Pool
+71,0.0,uniform,Solution Pool
+72,0.0,uniform,Solution Pool
+73,0.0,uniform,Solution Pool
+74,0.0,uniform,Solution Pool
+75,0.0,uniform,Solution Pool
+76,0.0,uniform,Solution Pool
+77,0.0,uniform,Solution Pool
+78,0.0,uniform,Solution Pool
+79,0.0,uniform,Solution Pool
+80,0.0,uniform,Solution Pool
+81,0.0,uniform,Solution Pool
+82,0.0,uniform,Solution Pool
+83,0.0,uniform,Solution Pool
+84,0.0,uniform,Solution Pool
+85,0.0,uniform,Solution Pool
+86,0.0,uniform,Solution Pool
+87,0.0,uniform,Solution Pool
+88,0.0,uniform,Solution Pool
+89,0.0,uniform,Solution Pool
+90,0.0,uniform,Solution Pool
+91,0.0,uniform,Solution Pool
+92,0.0,uniform,Solution Pool
+93,0.0,uniform,Solution Pool
+94,0.0,uniform,Solution Pool
+95,0.0,uniform,Solution Pool
+96,0.0,uniform,Solution Pool
+97,0.0,uniform,Solution Pool
+98,0.0,uniform,Solution Pool
+99,0.0,uniform,Solution Pool
+1,0.0,uniform,Random Shuffle
+2,0.0,uniform,Random Shuffle
+3,0.0,uniform,Random Shuffle
+4,0.0,uniform,Random Shuffle
+5,0.0,uniform,Random Shuffle
+6,0.0,uniform,Random Shuffle
+7,0.0,uniform,Random Shuffle
+8,0.0,uniform,Random Shuffle
+9,0.0,uniform,Random Shuffle
+10,0.0,uniform,Random Shuffle
+11,0.0,uniform,Random Shuffle
+12,0.0,uniform,Random Shuffle
+13,0.0,uniform,Random Shuffle
+14,0.0,uniform,Random Shuffle
+15,0.0,uniform,Random Shuffle
+16,0.0,uniform,Random Shuffle
+17,0.0,uniform,Random Shuffle
+18,0.0,uniform,Random Shuffle
+19,0.0,uniform,Random Shuffle
+20,0.0,uniform,Random Shuffle
+21,0.0,uniform,Random Shuffle
+22,0.0,uniform,Random Shuffle
+23,0.0,uniform,Random Shuffle
+24,0.0,uniform,Random Shuffle
+25,0.0,uniform,Random Shuffle
+26,0.0,uniform,Random Shuffle
+27,0.0,uniform,Random Shuffle
+28,0.0,uniform,Random Shuffle
+29,0.0,uniform,Random Shuffle
+30,0.0,uniform,Random Shuffle
+31,0.0,uniform,Random Shuffle
+32,0.0,uniform,Random Shuffle
+33,0.0,uniform,Random Shuffle
+34,0.0,uniform,Random Shuffle
+35,0.0,uniform,Random Shuffle
+36,0.0,uniform,Random Shuffle
+37,0.0,uniform,Random Shuffle
+38,0.0,uniform,Random Shuffle
+39,0.0,uniform,Random Shuffle
+40,0.0,uniform,Random Shuffle
+41,0.0,uniform,Random Shuffle
+42,0.0,uniform,Random Shuffle
+43,0.0,uniform,Random Shuffle
+44,0.0,uniform,Random Shuffle
+45,0.0,uniform,Random Shuffle
+46,0.0,uniform,Random Shuffle
+47,0.0,uniform,Random Shuffle
+48,0.0,uniform,Random Shuffle
+49,0.0,uniform,Random Shuffle
+50,0.0,uniform,Random Shuffle
+51,0.0,uniform,Random Shuffle
+52,0.0,uniform,Random Shuffle
+53,0.0,uniform,Random Shuffle
+54,0.0,uniform,Random Shuffle
+55,0.0,uniform,Random Shuffle
+56,0.0,uniform,Random Shuffle
+57,0.0,uniform,Random Shuffle
+58,0.0,uniform,Random Shuffle
+59,0.0,uniform,Random Shuffle
+60,0.0,uniform,Random Shuffle
+61,0.0,uniform,Random Shuffle
+62,0.0,uniform,Random Shuffle
+63,0.0,uniform,Random Shuffle
+64,0.0,uniform,Random Shuffle
+65,0.0,uniform,Random Shuffle
+66,0.0,uniform,Random Shuffle
+67,0.0,uniform,Random Shuffle
+68,0.0,uniform,Random Shuffle
+69,0.0,uniform,Random Shuffle
+70,0.0,uniform,Random Shuffle
+71,0.0,uniform,Random Shuffle
+72,0.0,uniform,Random Shuffle
+73,0.0,uniform,Random Shuffle
+74,0.0,uniform,Random Shuffle
+75,0.0,uniform,Random Shuffle
+76,0.0,uniform,Random Shuffle
+77,0.0,uniform,Random Shuffle
+78,0.0,uniform,Random Shuffle
+79,0.0,uniform,Random Shuffle
+80,0.0,uniform,Random Shuffle
+81,0.0,uniform,Random Shuffle
+82,0.0,uniform,Random Shuffle
+83,0.0,uniform,Random Shuffle
+84,0.0,uniform,Random Shuffle
+85,0.0,uniform,Random Shuffle
+86,0.0,uniform,Random Shuffle
+87,0.0,uniform,Random Shuffle
+88,0.0,uniform,Random Shuffle
+89,0.0,uniform,Random Shuffle
+90,0.0,uniform,Random Shuffle
+91,0.0,uniform,Random Shuffle
+92,0.0,uniform,Random Shuffle
+93,0.0,uniform,Random Shuffle
+94,0.0,uniform,Random Shuffle
+95,0.0,uniform,Random Shuffle
+96,0.0,uniform,Random Shuffle
+97,0.0,uniform,Random Shuffle
+98,0.0,uniform,Random Shuffle
+99,0.0,uniform,Random Shuffle
+1,0.0,uniform,Greedy
+2,0.0,uniform,Greedy
+3,0.0,uniform,Greedy
+4,0.0,uniform,Greedy
+5,0.0,uniform,Greedy
+6,0.0,uniform,Greedy
+7,0.0,uniform,Greedy
+8,0.0,uniform,Greedy
+9,0.0,uniform,Greedy
+10,0.0,uniform,Greedy
+11,0.0,uniform,Greedy
+12,0.0,uniform,Greedy
+13,0.0,uniform,Greedy
+14,0.0,uniform,Greedy
+15,0.0,uniform,Greedy
+16,0.0,uniform,Greedy
+17,0.0,uniform,Greedy
+18,0.0,uniform,Greedy
+19,0.0,uniform,Greedy
+20,0.0,uniform,Greedy
+21,0.0,uniform,Greedy
+22,0.0,uniform,Greedy
+23,0.0,uniform,Greedy
+24,0.0,uniform,Greedy
+25,0.0,uniform,Greedy
+26,0.0,uniform,Greedy
+27,0.0,uniform,Greedy
+28,0.0,uniform,Greedy
+29,0.0,uniform,Greedy
+30,0.0,uniform,Greedy
+31,0.0,uniform,Greedy
+32,0.0,uniform,Greedy
+33,0.0,uniform,Greedy
+34,0.0,uniform,Greedy
+35,0.0,uniform,Greedy
+36,0.0,uniform,Greedy
+37,0.0,uniform,Greedy
+38,0.0,uniform,Greedy
+39,0.0,uniform,Greedy
+40,0.0,uniform,Greedy
+41,0.0,uniform,Greedy
+42,0.0,uniform,Greedy
+43,0.0,uniform,Greedy
+44,0.0,uniform,Greedy
+45,0.0,uniform,Greedy
+46,0.0,uniform,Greedy
+47,0.0,uniform,Greedy
+48,0.0,uniform,Greedy
+49,0.0,uniform,Greedy
+50,0.0,uniform,Greedy
+51,0.0,uniform,Greedy
+52,0.0,uniform,Greedy
+53,0.0,uniform,Greedy
+54,0.0,uniform,Greedy
+55,0.0,uniform,Greedy
+56,0.0,uniform,Greedy
+57,0.0,uniform,Greedy
+58,0.0,uniform,Greedy
+59,0.0,uniform,Greedy
+60,0.0,uniform,Greedy
+61,0.0,uniform,Greedy
+62,0.0,uniform,Greedy
+63,0.0,uniform,Greedy
+64,0.0,uniform,Greedy
+65,0.0,uniform,Greedy
+66,0.0,uniform,Greedy
+67,0.0,uniform,Greedy
+68,0.0,uniform,Greedy
+69,0.0,uniform,Greedy
+70,0.0,uniform,Greedy
+71,0.0,uniform,Greedy
+72,0.0,uniform,Greedy
+73,0.0,uniform,Greedy
+74,0.0,uniform,Greedy
+75,0.0,uniform,Greedy
+76,0.0,uniform,Greedy
+77,0.0,uniform,Greedy
+78,0.0,uniform,Greedy
+79,0.0,uniform,Greedy
+80,0.0,uniform,Greedy
+81,0.0,uniform,Greedy
+82,0.0,uniform,Greedy
+83,0.0,uniform,Greedy
+84,0.0,uniform,Greedy
+85,0.0,uniform,Greedy
+86,0.0,uniform,Greedy
+87,0.0,uniform,Greedy
+88,0.0,uniform,Greedy
+89,0.0,uniform,Greedy
+90,0.0,uniform,Greedy
+91,0.0,uniform,Greedy
+92,0.0,uniform,Greedy
+93,0.0,uniform,Greedy
+94,0.0,uniform,Greedy
+95,0.0,uniform,Greedy
+96,0.0,uniform,Greedy
+97,0.0,uniform,Greedy
+98,0.0,uniform,Greedy
+99,0.0,uniform,Greedy

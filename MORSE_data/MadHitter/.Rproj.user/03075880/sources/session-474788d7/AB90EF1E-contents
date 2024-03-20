@@ -1,0 +1,98 @@
+```{r}
+library(tidyverse)
+library(readxl)
+
+shannon_scores <- read_excel('shannon_scores.xlsx') %>% 
+  filter(dataset != 'NA') %>% 
+  mutate(weights = str_replace(weights, 'uniform', 'Uniform'),
+         weights = str_replace(weights, 'random', 'Random'),
+         dataset = paste('Dataset:',
+                         dataset),
+         shannon = round(shannon, 3)) %>% 
+  rename(Weights = weights) %>% 
+  filter(lb == 0.8)
+```
+
+```{r}
+shannon_scores <- tibble()
+
+for (dataset in list.files('sols')){
+  name <- paste('Dataset:',
+                strsplit(dataset, ".", fixed = TRUE)[[1]][1])
+  
+  data <- read_excel(paste0('sols/',
+                            dataset)) %>% 
+    filter(lb == 0.8)
+  
+  if (nrow(data) > 0){
+    random_prob <- table(data %>% 
+                         filter(type == 'random') %>% 
+                           slice_head(n = 1000) %>%
+                           pull(genes))/1000
+  
+    uniform_prob <- table(data %>% 
+                           filter(type == 'uniform') %>% 
+                            slice_head(n = 1000) %>% 
+                            pull(genes))/1000
+    
+    random_entropy <- round(-sum(random_prob * log2(random_prob)),
+                            3)
+    
+    uniform_entropy <- round(-sum(uniform_prob * log2(uniform_prob)),
+                             3)
+    
+    shannon_scores <- rbind(shannon_scores,
+                            tibble(dataset = rep(name,
+                                                 2),
+                                   shannon = c(random_entropy,
+                                               uniform_entropy),
+                                   Weights = c('Random',
+                                               'Uniform')))
+  }
+}
+```
+
+```{r}
+order_by_max <- shannon_scores %>% 
+  group_by(dataset) %>% 
+  summarize(max_shannon = max(shannon)) %>% 
+  arrange(desc(max_shannon)) %>% 
+  pull(dataset)
+```
+
+```{r}
+shannon_scores %>%
+  ggplot(aes(Weights,
+             shannon,
+             fill = Weights)) +
+  geom_col(color = 'black') +
+  geom_text(aes(label = shannon),
+            vjust = 1.2,
+            size = 8,
+            fontface = 'bold') +
+  scale_fill_brewer(palette = 'Set1') +
+  theme_minimal() +
+  labs(x = 'Weights',
+       y = 'Shannon Entropy',
+       title = 'Gene Solution Shannon Entropy Values',
+       subtitle = 'Lower Bound = 0.8, Upper Bound = 0.1') +
+  theme(axis.text = element_text(size = 12),
+        axis.title = element_text(size = 14),
+        plot.title = element_text(hjust = 0.5,
+                                  size = 20),
+        plot.subtitle = element_text(hjust = 0.5),
+        legend.direction = 'horizontal',
+        legend.position = 'top',
+        strip.text = element_text(face = 'bold'),
+        strip.background = element_rect(fill = 'grey90')) +
+  facet_wrap(~factor(dataset,
+                     levels = order_by_max),
+             ncol = 3,
+             scales = 'free_y')
+
+ggsave('plots/madhitter_shannon.png',
+       width = 9,
+       height = 10.5,
+       units = 'in',
+       bg = 'white')
+```

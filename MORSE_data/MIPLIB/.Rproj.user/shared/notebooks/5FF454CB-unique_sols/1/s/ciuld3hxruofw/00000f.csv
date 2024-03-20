@@ -1,0 +1,8 @@
+"0","merged$p <- ifelse(seq_along(merged$run_number) %% ((nrow(merged) - 2)/40) == 0,"
+"0","                          merged$num_sol,"
+"0","                          NA)"
+"0",""
+"0","max_vals <- merged %>%"
+"0","  group_by(instance) %>%"
+"0","  summarize(max_val = 1.1 * max(num_sol),"
+"0","            max_run = max(run_number))"
