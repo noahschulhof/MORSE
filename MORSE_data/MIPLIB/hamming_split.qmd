@@ -11,7 +11,7 @@ for (file in list.files('hamming_results')){
   data <- read_csv(paste0('hamming_results/',
                           file))
   
-  name <- paste('MIPLIB instance:',
+  name <- paste('MIPLIB:',
                 sub("\\..*", "",
                     file))
   
@@ -103,8 +103,8 @@ results %>%
   scale_color_brewer(palette = 'Set1') +
   theme_minimal() +
   labs(x = 'Run Number',
-       y = 'Average Pairwise Hamming Distance Percentage',
-       title = 'Average Pairwise Hamming Distance Percentage vs. Run Number',
+       y = 'Average Pairwise Hamming Distance Proportion',
+       title = 'Average Pairwise Hamming Distance Proportion vs. Run Number',
        color = 'Optimization Method',
        shape = 'Optimization Method') +
   theme(plot.title = element_text(hjust = 0.5,
@@ -112,7 +112,8 @@ results %>%
         axis.title = element_text(size = 18),
         axis.text = element_text(size = 16),
         strip.background = element_rect(fill = 'grey90'),
-        strip.text = element_text(face = 'bold'),
+        strip.text = element_text(face = 'bold',
+                                  size = 14),
         legend.position = 'top',
         legend.direction = 'horizontal',
         legend.text = element_text(size = 15),
@@ -126,7 +127,7 @@ results %>%
                                         'Random Shuffle',
                                         'Greedy')),
                     ncol = 6,
-                    scales = 'free_y') + scale_y_facet(PANEL == 1, limits = c(0,0.89)) + scale_y_facet(PANEL %in% c(2,3), limits = c(0, 0.89), labels = NULL) + scale_y_facet(PANEL == 4, limits = c(0,0.82), breaks = c(0, 0.4, 0.8)) + scale_y_facet(PANEL %in% c(5,6), limits = c(0, 0.82), labels = NULL, breaks = c(0, 0.4, 0.8)) + scale_y_facet(PANEL == 7, limits = c(0,0.81), breaks = c(0, 0.4, 0.8)) + scale_y_facet(PANEL %in% c(8,9), limits = c(0, 0.81), labels = NULL, breaks = c(0, 0.4, 0.8)) + scale_y_facet(PANEL == 10, limits = c(0,0.67)) + scale_y_facet(PANEL %in% c(11,12), limits = c(0, 0.67), labels = NULL) + scale_y_facet(PANEL == 13, limits = c(0,0.6)) + scale_y_facet(PANEL %in% c(14,15), limits = c(0, 0.6), labels = NULL) + scale_y_facet(PANEL == 16, limits = c(0,0.3)) + scale_y_facet(PANEL %in% c(17,18), limits = c(0, 0.3), labels = NULL) + scale_y_facet(PANEL == 19, limits = c(0.12,0.2), breaks = c(0.12, 0.16, 0.2)) + scale_y_facet(PANEL %in% c(20,21), limits = c(0.12, 0.2), labels = NULL, breaks = c(0.12, 0.16, 0.2)) + scale_y_facet(PANEL == 22, limits = c(0.12,0.18), breaks = c(0.12, 0.15, 0.18)) + scale_y_facet(PANEL %in% c(23,24), limits = c(0.12, 0.18), labels = NULL, breaks = c(0.12, 0.15, 0.18)) + scale_y_facet(PANEL == 25, limits = c(0,0.15)) + scale_y_facet(PANEL %in% c(26,27), limits = c(0, 0.15), labels = NULL) + scale_y_facet(PANEL == 28, limits = c(0.03,0.07), breaks = c(0.03, 0.05, 0.07)) + scale_y_facet(PANEL %in% c(29,30), limits = c(0.03, 0.07), labels = NULL, breaks = c(0.03, 0.05, 0.07))
+                    scales = 'free_y') + scale_y_facet(PANEL == 1, limits = c(0,0.6), breaks = c(0, 0.3, 0.6)) + scale_y_facet(PANEL %in% c(2,3), limits = c(0, 0.6), labels = NULL, breaks = c(0, 0.3, 0.6)) + scale_y_facet(PANEL == 4, limits = c(0,0.6), breaks = c(0, 0.3, 0.6)) + scale_y_facet(PANEL %in% c(5,6), limits = c(0, 0.6), labels = NULL, breaks = c(0, 0.3, 0.6)) + scale_y_facet(PANEL == 7, limits = c(0,0.5), breaks = c(0, 0.25, 0.5)) + scale_y_facet(PANEL %in% c(8,9), limits = c(0, 0.5), labels = NULL, breaks = c(0, 0.25, 0.5)) + scale_y_facet(PANEL == 10, limits = c(0,0.4), breaks = c(0, 0.2, 0.4)) + scale_y_facet(PANEL %in% c(11,12), limits = c(0, 0.4), labels = NULL, breaks = c(0, 0.2, 0.4)) + scale_y_facet(PANEL == 13, limits = c(0,0.3), breaks = c(0, 0.15, 0.3)) + scale_y_facet(PANEL %in% c(14,15), limits = c(0, 0.3), labels = NULL, breaks = c(0, 0.15, 0.3)) + scale_y_facet(PANEL == 16, limits = c(0,0.2), breaks = c(0, 0.1, 0.2)) + scale_y_facet(PANEL %in% c(17,18), limits = c(0, 0.2), labels = NULL, breaks = c(0, 0.1, 0.2)) + scale_y_facet(PANEL == 19, limits = c(0.12,0.2), breaks = c(0.12, 0.16, 0.2)) + scale_y_facet(PANEL %in% c(20,21), limits = c(0.12, 0.2), labels = NULL, breaks = c(0.12, 0.16, 0.2)) + scale_y_facet(PANEL == 22, limits = c(0.12,0.18), breaks = c(0.12, 0.15, 0.18)) + scale_y_facet(PANEL %in% c(23,24), limits = c(0.12, 0.18), labels = NULL, breaks = c(0.12, 0.15, 0.18)) + scale_y_facet(PANEL == 25, limits = c(0,0.15)) + scale_y_facet(PANEL %in% c(26,27), limits = c(0, 0.15), labels = NULL) + scale_y_facet(PANEL == 28, limits = c(0.03,0.07), breaks = c(0.03, 0.05, 0.07)) + scale_y_facet(PANEL %in% c(29,30), limits = c(0.03, 0.07), labels = NULL, breaks = c(0.03, 0.05, 0.07))
 
 ggsave('plots/hamming_split/hamming_group1.png', bg = 'white', width = 12, height = 12, units = 'in')
 ```
@@ -151,8 +152,8 @@ results %>%
   scale_color_brewer(palette = 'Set1') +
   theme_minimal() +
   labs(x = 'Run Number',
-       y = 'Average Pairwise Hamming Distance Percentage',
-       title = 'Average Pairwise Hamming Distance Percentage vs. Run Number',
+       y = 'Average Pairwise Hamming Distance Proportion',
+       title = 'Average Pairwise Hamming Distance Proportion vs. Run Number',
        color = 'Weights',
        shape = 'Weights') +
   theme(plot.title = element_text(hjust = 0.5,
@@ -160,7 +161,8 @@ results %>%
         axis.title = element_text(size = 18),
         axis.text = element_text(size = 16),
         strip.background = element_rect(fill = 'grey90'),
-        strip.text = element_text(face = 'bold'),
+        strip.text = element_text(face = 'bold',
+                                  size = 14),
         legend.position = 'top',
         legend.direction = 'horizontal',
         legend.text = element_text(size = 15),
@@ -174,7 +176,7 @@ results %>%
                                         'Random Shuffle',
                                         'Greedy')),
                     ncol = 6,
-                    scales = 'free_y') + scale_y_facet(PANEL == 1, limits = c(0,0.08), breaks = c(0, 0.04, 0.08)) + scale_y_facet(PANEL %in% c(2,3), limits = c(0, 0.08), labels = NULL) + scale_y_facet(PANEL == 4, limits = c(0,0.07)) + scale_y_facet(PANEL %in% c(5,6), limits = c(0, 0.07), labels = NULL) + scale_y_facet(PANEL == 7, limits = c(0,0.06)) + scale_y_facet(PANEL %in% c(8,9), limits = c(0, 0.06), labels = NULL) + scale_y_facet(PANEL == 10, limits = c(0,0.04), breaks = c(0, 0.02, 0.04)) + scale_y_facet(PANEL %in% c(11,12), limits = c(0, 0.04), labels = NULL) + scale_y_facet(PANEL == 13, limits = c(0,0.01), breaks = c(0, 0.005, 0.01)) + scale_y_facet(PANEL %in% c(14,15), limits = c(0, 0.01), labels = NULL) + scale_y_facet(PANEL == 16, limits = c(0,0.007)) + scale_y_facet(PANEL %in% c(17,18), limits = c(0, 0.007), labels = NULL) + scale_y_facet(PANEL == 19, limits = c(0,0.007)) + scale_y_facet(PANEL %in% c(20,21), limits = c(0, 0.007), labels = NULL) + scale_y_facet(PANEL == 22, limits = c(0,0.007)) + scale_y_facet(PANEL %in% c(23,24), limits = c(0, 0.007), labels = NULL) + scale_y_facet(PANEL == 25, limits = c(0,0.005), breaks = c(0, 0.002, 0.004)) + scale_y_facet(PANEL %in% c(26,27), limits = c(0, 0.005), labels = NULL) + scale_y_facet(PANEL == 28, limits = c(0,0.005), breaks = c(0, 0.002, 0.004)) + scale_y_facet(PANEL %in% c(29,30), limits = c(0, 0.005), labels = NULL)
+                    scales = 'free_y') + scale_y_facet(PANEL == 1, limits = c(0,0.06), breaks = c(0, 0.03, 0.06)) + scale_y_facet(PANEL %in% c(2,3), limits = c(0, 0.06), labels = NULL, breaks = c(0, 0.03, 0.06)) + scale_y_facet(PANEL == 4, limits = c(0.03,0.07), breaks = c(0.03, 0.05, 0.07)) + scale_y_facet(PANEL %in% c(5,6), limits = c(0.03, 0.07), labels = NULL, breaks = c(0.03, 0.05, 0.07)) + scale_y_facet(PANEL == 7, limits = c(0.02,0.06), breaks = c(0.02, 0.04, 0.06)) + scale_y_facet(PANEL %in% c(8,9), limits = c(0.02, 0.06), labels = NULL, breaks = c(0.02, 0.04, 0.06)) + scale_y_facet(PANEL == 10, limits = c(0,0.04), breaks = c(0, 0.02, 0.04)) + scale_y_facet(PANEL %in% c(11,12), limits = c(0, 0.04), labels = NULL, breaks = c(0, 0.02, 0.04)) + scale_y_facet(PANEL == 13, limits = c(0,0.006), breaks = c(0, 0.003, 0.006)) + scale_y_facet(PANEL %in% c(14,15), limits = c(0, 0.006), labels = NULL, breaks = c(0, 0.003, 0.006)) + scale_y_facet(PANEL == 16, limits = c(0,0.006), breaks = c(0, 0.003, 0.006)) + scale_y_facet(PANEL %in% c(17,18), limits = c(0, 0.006), labels = NULL, breaks = c(0, 0.003, 0.006)) + scale_y_facet(PANEL == 19, limits = c(0,0.006), breaks = c(0, 0.003, 0.006)) + scale_y_facet(PANEL %in% c(20,21), limits = c(0, 0.006), labels = NULL, breaks = c(0, 0.003, 0.006)) + scale_y_facet(PANEL == 22, limits = c(0,0.007)) + scale_y_facet(PANEL %in% c(23,24), limits = c(0, 0.007), labels = NULL) + scale_y_facet(PANEL == 25, limits = c(0,0.004), breaks = c(0, 0.002, 0.004)) + scale_y_facet(PANEL %in% c(26,27), limits = c(0, 0.004), labels = NULL, breaks = c(0, 0.002, 0.004)) + scale_y_facet(PANEL == 28, limits = c(0.002,0.004), breaks = c(0.002, 0.003, 0.004)) + scale_y_facet(PANEL %in% c(29,30), limits = c(0.002, 0.004), labels = NULL, breaks = c(0.002, 0.003, 0.004))
 
 ggsave('plots/hamming_split/hamming_group2.png', bg = 'white', width = 12, height = 12, units = 'in')
 ```

@@ -55,7 +55,7 @@ for (instance in instances){
                        rep('MORSE', nrow(results_random))))
   
   results_merged <- results_merged %>% 
-    mutate(instance = rep(paste('MIPLIB instance:',
+    mutate(instance = rep(paste('MIPLIB:',
                                 instance),
                           nrow(results_merged)))
   
@@ -115,7 +115,8 @@ results %>%
         axis.text = element_text(size = 14),
         plot.margin = unit(c(1, 1, 1, 1), 'lines'),
         strip.background = element_rect(fill = 'grey90'),
-        strip.text = element_text(face = 'bold'),
+        strip.text = element_text(face = 'bold',
+                                  size = 14),
         legend.position = 'top',
         legend.direction = 'horizontal',
         legend.text = element_text(size = 14),

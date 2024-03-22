@@ -4,7 +4,7 @@ library(ggpubr)
 ```
 
 ```{r}
-instance <- 'pigeon-10'
+instance <- 'stein15'
 
 results_uniform <- read_delim(paste0('unique_results/',
                                            instance,
@@ -48,7 +48,7 @@ results_random <- add_row(row1,
 merged <- rbind(results_uniform, results_random) %>% 
   mutate(weights = c(rep('Uniform Weights', nrow(results_uniform)),
                      rep('MORSE', nrow(results_random))),
-         instance = rep(paste('MIPLIB instance:',
+         instance = rep(paste('MIPLIB:',
                               instance),
                         nrow(results_uniform) + nrow(results_random)))
 ```
@@ -86,7 +86,8 @@ plot <- merged %>%
                                   size = 20),
         plot.margin = unit(c(1, 1, 1, 1), 'lines'),
         strip.background = element_rect(fill = 'grey90'),
-        strip.text = element_text(face = 'bold'),
+        strip.text = element_text(face = 'bold',
+                                  size = 12),
         axis.text = element_text(size = 12),
         legend.position = 'top',
         legend.direction = 'horizontal') +

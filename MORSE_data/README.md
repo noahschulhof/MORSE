@@ -17,8 +17,8 @@ This part of the `MORSE` repository contains the input files, links to input fil
 ### Scripts
 |Figure(s)|Script|
 |---------|------|
-|9-10     |`num_sol.qmd`|
-|11       |`shannon.qmd`|
+|10-11     |`num_sol.qmd`|
+|12       |`shannon.qmd`|
 
 To execute these scripts, open `MadHitter.Rproj` in `Rstudio` and select the desired script from the right panel.
 
@@ -40,10 +40,10 @@ To execute these scripts, open `MadHitter.Rproj` in `Rstudio` and select the des
 |Figure(s)|Script|
 |---------|------|
 |1-3      |`hamming.qmd`|
-|4        |`hamming_split.qmd`|
-|5-7      |`unique_sols.qmd`|
-|8        |`unique_tabular.qmd`|
-|12-13    |`shannon.qmd`|
-|14       |`obj.qmd`|
+|4-5      |`hamming_split.qmd`|
+|6-8      |`unique_sols.qmd`|
+|9        |`unique_tabular.qmd`|
+|13-14    |`shannon.qmd`|
+|15       |`obj.qmd`|
 
 To execute these scripts, open `MIPLIB.Rproj` in `Rstudio` and select the desired script from the right panel.

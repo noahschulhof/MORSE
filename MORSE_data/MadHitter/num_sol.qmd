@@ -4,7 +4,7 @@ library(readxl)
 ```
 
 ```{r}
-dataset <- 'GSE147082'
+dataset <- 'GSE103322'
 
 results <- read_excel(paste0('sols/',
                              dataset,
@@ -90,7 +90,8 @@ run_counts %>%
                            'lines'),
         axis.text = element_text(size = 12),
         strip.background = element_rect(fill = 'grey90'),
-        strip.text = element_text(face = 'bold')) +
+        strip.text = element_text(face = 'bold',
+                                  size = 12)) +
   labs(x = 'Run Number',
        y = 'Number of Distinct Solutions Found',
        title = 'Number of Distinct Solutions vs. Run Number',

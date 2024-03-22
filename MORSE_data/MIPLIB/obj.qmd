@@ -11,7 +11,7 @@ instances <- list.files('obj_vals')
 merged <- tibble()
 
 for (instance in instances){
-  name <- paste('MIPLIB instance:',
+  name <- paste('MIPLIB:',
                 sub("\\..*", "", instance))
                 
   data <- read.delim(paste0('obj_vals/',
@@ -70,13 +70,14 @@ merged %>%
         axis.text.x = element_text(size = 8),
         plot.margin = unit(c(1, 1, 1, 1), 'lines'),
         strip.background = element_rect(fill = 'grey90'),
-        strip.text = element_text(face = 'bold')) +
+        strip.text = element_text(face = 'bold',
+                                  size = 12)) +
   ggh4x::scale_x_facet(PANEL == 16,
                        breaks = c(-0.000005, 0, 0.000005))
 
 ggsave('plots/obj.png',
        bg = 'white',
        width = 10,
-       height = 12,
+       height = 10,
        units = 'in')
 ```

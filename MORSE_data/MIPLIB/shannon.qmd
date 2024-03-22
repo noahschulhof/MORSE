@@ -6,7 +6,7 @@ library(tidyverse)
 merged <- tibble()
 
 for (instance in list.files('unique_results')){
-  name <- paste('MIPLIB instance:',
+  name <- paste('MIPLIB:',
                 strsplit(instance, "_", fixed = TRUE)[[1]][1])
   
   if (grepl('uniform', instance)){
@@ -61,12 +61,14 @@ merged %>%
             size = 7,
             vjust = 1.15,
             na.rm = TRUE) +
-  scale_fill_brewer(palette = 'Set1') +
+  scale_fill_brewer(palette = 'Set1',
+                    labels = c('MORSE',
+                               'Uniform Weights')) +
   facet_wrap(~factor(instance, order_by_max),
              scales = 'free_y',
              ncol = 4) +
   theme_minimal() +
-  labs(x = 'Optimization Method',
+  labs(x = NULL,
        y = 'Shannon Entropy',
        title = 'Shannon Entropy vs. Optimization Method',
        fill = 'Optimization Method') +
@@ -75,7 +77,8 @@ merged %>%
         axis.title = element_text(size = 18),
         axis.text = element_text(size = 14),
         strip.background = element_rect(fill = 'grey90'),
-        strip.text = element_text(face = 'bold'),
+        strip.text = element_text(face = 'bold',
+                                  size = 14),
         legend.direction = 'horizontal',
         legend.position = 'top',
         legend.text = element_text(size = 14),
@@ -97,7 +100,7 @@ entropy <- function(x){
 merged_new <- tibble()
 
 for (instance in list.files('unique_results')){
-  name <- paste('MIPLIB instance:',
+  name <- paste('MIPLIB:',
                 strsplit(instance, "_", fixed = TRUE)[[1]][1])
   
   if (grepl('uniform', instance)){
@@ -145,12 +148,14 @@ merged_new %>%
             size = 8,
             vjust = 1.3,
             na.rm = TRUE) +
-  scale_fill_brewer(palette = 'Set1') +
+  scale_fill_brewer(palette = 'Set1',
+                    labels = c('MORSE',
+                               'Uniform Weights')) +
   facet_wrap(~factor(instance, order_by_max_new),
              scales = 'free_y',
              ncol = 4) +
   theme_minimal() +
-  labs(x = 'Optimization Method',
+  labs(x = NULL,
        y = 'Average Shannon Entropy',
        title = 'Average Shannon Entropy vs. Optimization Method') +
   theme(plot.title = element_text(hjust = 0.5,
@@ -158,7 +163,8 @@ merged_new %>%
         axis.title = element_text(size = 18),
         axis.text = element_text(size = 14),
         strip.background = element_rect(fill = 'grey90'),
-        strip.text = element_text(face = 'bold'),
+        strip.text = element_text(face = 'bold',
+                                  size = 14),
         legend.direction = 'horizontal',
         legend.position = 'top',
         legend.text = element_text(size = 14),
