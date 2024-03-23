@@ -157,7 +157,8 @@ merged_new %>%
   theme_minimal() +
   labs(x = NULL,
        y = 'Average Shannon Entropy',
-       title = 'Average Shannon Entropy vs. Optimization Method') +
+       title = 'Average Shannon Entropy vs. Optimization Method',
+       fill = 'Optimization Method') +
   theme(plot.title = element_text(hjust = 0.5,
                                   size = 24),
         axis.title = element_text(size = 18),
