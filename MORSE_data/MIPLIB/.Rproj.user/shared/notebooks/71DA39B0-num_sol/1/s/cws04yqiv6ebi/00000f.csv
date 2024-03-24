@@ -1,8 +1,0 @@
-"0","run_counts$p <- ifelse(seq_along(run_counts$run_number) %% 50 == 0,"
-"0","                       run_counts$num_sol,"
-"0","                       NA)"
-"0",""
-"0","max_vals <- run_counts %>%"
-"0","  group_by(dataset) %>%"
-"0","  summarize(max_val = 1.1 * max(num_sol),"
-"0","            max_run = max(run_number))"

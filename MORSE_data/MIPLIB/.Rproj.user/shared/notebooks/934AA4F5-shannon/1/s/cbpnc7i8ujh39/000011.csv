@@ -1,6 +1,0 @@
-"0",""
-"0","ggsave('plots/madhitter_shannon.png',"
-"0","       width = 9,"
-"0","       height = 10.5,"
-"0","       units = 'in',"
-"0","       bg = 'white')"

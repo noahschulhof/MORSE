@@ -1,5 +1,0 @@
-"0","order_by_max_new <- merged_new %>%"
-"0","  group_by(instance) %>%"
-"0","  summarize(max_shannon = max(shannon)) %>%"
-"0","  arrange(desc(max_shannon)) %>%"
-"0","  pull(instance)"

@@ -154,8 +154,8 @@ results %>%
   labs(x = 'Run Number',
        y = 'Average Pairwise Hamming Distance Proportion',
        title = 'Average Pairwise Hamming Distance Proportion vs. Run Number',
-       color = 'Weights',
-       shape = 'Weights') +
+       color = 'Optimization Method',
+       shape = 'Optimization Method') +
   theme(plot.title = element_text(hjust = 0.5,
                                   size = 24),
         axis.title = element_text(size = 18),
