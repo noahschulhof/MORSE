@@ -24,7 +24,7 @@ for (file in list.files('hamming_results')){
 results <- results %>% 
     mutate(weights = str_replace(weights, 'random', 'MORSE'),
            weights = str_replace(weights, 'uniform', 'Uniform Weights'),
-           Method = str_replace(Method, 'Solution Pool', 'Arbitrary'))
+           Method = str_replace(Method, 'Solution Pool', 'Seed-Based'))
 ```
 
 ```{r}
@@ -123,7 +123,7 @@ results %>%
   facet_nested_wrap(. ~ factor(instance,
                                levels = order_by_max) +
                       factor(Method,
-                             levels = c('Arbitrary',
+                             levels = c('Seed-Based',
                                         'Random Shuffle',
                                         'Greedy')),
                     ncol = 6,
@@ -172,7 +172,7 @@ results %>%
   facet_nested_wrap(. ~ factor(instance,
                                levels = order_by_max) +
                       factor(Method,
-                             levels = c('Arbitrary',
+                             levels = c('Seed-Based',
                                         'Random Shuffle',
                                         'Greedy')),
                     ncol = 6,

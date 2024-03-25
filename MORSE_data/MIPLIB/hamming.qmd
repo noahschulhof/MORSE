@@ -4,14 +4,14 @@ library(ggpubr)
 ```
 
 ```{r}
-instance <- 'lp4l'
+instance <- 'noswot'
 
 instance_data <- read_csv(paste0('hamming_results/',
                                    instance,
                                    '.txt')) %>% 
   mutate(weights = str_replace(weights, 'random', 'MORSE'),
          weights = str_replace(weights, 'uniform', 'Uniform Weights'),
-         Method = str_replace(Method, 'Solution Pool', 'Arbitrary'))
+         Method = str_replace(Method, 'Solution Pool', 'Seed-Based'))
 
 instance_data <- instance_data %>% 
   mutate(instance = rep(paste('MIPLIB:',
@@ -84,7 +84,7 @@ instance_data %>%
         legend.direction = 'horizontal') +
   ggh4x::facet_nested_wrap(. ~ factor(instance) +
                       factor(Method,
-                             levels = c('Arbitrary',
+                             levels = c('Seed-Based',
                                         'Random Shuffle',
                                         'Greedy')))
 
