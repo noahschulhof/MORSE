@@ -1,5 +1,9 @@
 # MORSE_data
-This part of the `MORSE` repository contains the input files, links to input files, data, and scripts needed to reproduce the results in the `MORSE` manuscript. The tables below indicate which script produces each figure. The `MadHitter` input files are in separate repositories, as they have been used in the original `MadHitter` [paper](https://www.nature.com/articles/s41467-022-29154-2), and have been made available for other cancer-related studies.
+This part of the `MORSE` repository contains the input files (with corresponding links), data, and scripts needed to reproduce the results in the `MORSE` manuscript. The tables below indicate which script produces each figure. The `MadHitter` input files are in separate repositories, as they have been used in the original `MadHitter` [paper](https://www.nature.com/articles/s41467-022-29154-2), and have been made available for other cancer-related studies.
+
+## CPLEX_testing
+This folder contains an implementation/evaluation of the CPLEX [`populate`](https://www.ibm.com/docs/en/icos/22.1.1?topic=pool-algorithm-populate-procedure) method (for enumerating all optima of an ILP) on the 20 `MIPLIB` instances tested. `solve_new.ipynb` provides a walkthrough of this process.
+
 
 ## MadHitter
 
