@@ -1,7 +1,7 @@
 # MORSE
 Author: [Noah Schulhof](mailto:nschulhof@u.northwestern.edu) with guidance from Pattara Sukprasert, Alejandro Schaffer, Samir Khuller, and Eytan Ruppin
 
-Integer Linear Program (ILPs) and Mixed Integer Linear Programs (MILPs) are optimization problems in which a linear objective function is minimized or maximized while satisfying a set of linear constraints. All variables in ILPs are constrained to only take on integer values, while only some variables in MIPs must be integral. ILPs and MILPs often have multiple distinct optimal solutions, yet many optimization solvers struggle to efficiently explore the space of optima, returning certain solutions at disproportionately high frequencies. In the present work, we introduce `MORSE` (Multiple Optima via Random Sampling and careful choice of the parameter Epsilon), a parallelizable algorithm to efficiently generate multiple optima for ILPs and MILPs.
+Integer Linear Program (ILPs) and Mixed Integer Linear Programs (MILPs) are optimization problems in which a linear objective function is minimized or maximized while satisfying a set of linear constraints. All variables in ILPs are constrained to only take on integer values, while only some variables in MILPs must be integral. ILPs and MILPs often have multiple distinct optimal solutions, yet many optimization solvers struggle to efficiently explore the space of optima, returning certain solutions at disproportionately high frequencies. In the present work, we introduce `MORSE` (Multiple Optima via Random Sampling and careful choice of the parameter Epsilon), a parallelizable algorithm to efficiently generate multiple optima for ILPs and MILPs.
 
 Paramount to our method is the selection of a small value $ε$ that determines the maximum value by which we may vary the objective function coefficients, as we explain with the following example. Consider the following instance: maximizing the expression $x+y$ subject to the constraints $x,y≤2$ and $x+y≤3.5$, $x,y∈Z$. Suppose we choose $ε=0.01$. Next, we randomly generate a perturbation vector of length two (equal to the number of coefficients in the objective function) whose entries $v_1, v_2 \stackrel{\text{i.i.d.}}{\sim} \mathcal{U}(1-ε, 1+ε)$. An example of such a perturbation vector is $[0.99864, 1.00142]$. We then map the vector entries to the coefficients in the objective function, which becomes $0.99864x+1.00142y$. Without modifying the constraints, we solve the resulting instance and obtain the optimum $`\{x=1, y=2\}`$. On another execution of `MORSE`, with the same value for $ε$, suppose we randomly generate the perturbation vector $[1.00045, 0.99312]$. After mapping the vector entries to the coefficients in the objective function, and solving the instance, we obtain the optimum $`\{x=2, y=1\}`$. By executing two independent runs of `MORSE`, we can find the two distinct optima for the provided instance. To generalize this notion, for any instance with $n>1$ distinct optima, we aim to find all distinct optima in $r≥n$ independent `MORSE` runs.  
 
@@ -14,7 +14,7 @@ If $ε$ is sufficiently small, we can prove that each optimum of the perturbed i
 - [`Gurobi`](https://www.gurobi.com/solutions/gurobi-optimizer/) & [`gurobipy`](https://pypi.org/project/gurobipy/) v10.0.3+
 - [`pandas`](https://pypi.org/project/pandas/) v2.1.2+
 
-### Conda Installation of Gurobi
+### Installing Gurobi with Conda
 The following command installs `Gurobi` (version 11.0.0) and `gurobipy`
 ```bash
 $ conda install -c gurobi gurobi
@@ -30,9 +30,9 @@ To use the Gurobi Optimizer, a valid license is required. A guide to the availab
 
 
 ## Scripts
-MORSE includes four python scripts. Three are top-level scripts and one has helper functions.  
+MORSE includes four python scripts: three top-level scripts and one script containing helper functions.  
 - `solve.py` -- solve one instance one time
-- `parallel.py` -- set up parallel runs of `solve.py` that are for the same instance but using different pertubation vectors
+- `parallel.py` -- set up parallel runs of `solve.py` for the same instance but different pertubation vectors
 - `agg.py` -- aggregate solutions to collect summary data
 - `morse.py` -- helper functions
 
@@ -40,11 +40,14 @@ Instructions for using `solve.py`, `parallel.py`, and `agg.py` can be found belo
 
 ## Usage
 ```bash
-$ python3 solve.py --instance_filepath instance.mps
+$ python3 solve.py \
+    --instance_filepath instance.mps
 ```
 - To write solutions to csv file, simply supply a filepath to the intended solutions file
 ```bash
-$ python3 solve.py --instance_filepath instance.mps --sol_filepath solutions.csv
+$ python3 solve.py \
+    --instance_filepath instance.mps \
+    --sol_filepath solutions.csv
 ```
 
 ### Arguments to `solve.py`
@@ -61,7 +64,9 @@ If `-r`/`--random_seed` is not supplied, then no random seed nor Gurobi seed wil
 ### Example Run
 ```bash
 $ wget https://miplib2010.zib.de/miplib3/miplib3/p0033.mps.gz
-$ python3 solve.py --instance_filepath p0033.mps.gz --sol_filepath p0033_sols.csv
+$ python3 solve.py \
+    --instance_filepath p0033.mps.gz \
+    --sol_filepath p0033_sols.csv
 ```
 
 `p0033.mps.gz` is one of the instances listed below in the subsection [Sample MPS Files](https://github.com/ruppinlab/MORSE?tab=readme-ov-file#sample-mps-files).
