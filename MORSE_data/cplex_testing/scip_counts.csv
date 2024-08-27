@@ -1,0 +1,21 @@
+MIPLIB instance,Most recent MIPLIB version,Number of distinct optima (SCIP)
+set1al,2.0,2
+set1cl,2.0,2
+p0201,3.0,4
+bell3a,3.0,5
+mod008,3.0,6
+p0033,3.0,9
+bell5,3.0,16
+lp4l,2.0,24
+vpm2,4.0,33
+stein9,2.0,54
+stein45,3.0,70
+supportcase14,6.0,256
+supportcase16,6.0,256
+stein15,3.0,315
+stein27,3.0,2106
+harp2,5.0,≥1
+pigeon-10,6.0,≥6574
+app2-2,6.0,≥41819
+noswot,6.0,≥48776
+vpm1,3.0,≥86186
