@@ -30,7 +30,7 @@ To use the Gurobi Optimizer, a valid license is required. A guide to the availab
 
 
 ## Scripts
-MORSE includes four python scripts: three top-level scripts and one script containing helper functions.  
+MORSE includes four scripts: three top-level scripts and one script containing helper functions.  
 - `solve.py` -- solve one instance one time
 - `parallel.py` -- set up parallel runs of `solve.py` for the same instance but different pertubation vectors
 - `agg.py` -- aggregate solutions to collect summary data
@@ -177,7 +177,7 @@ The table below gives the full list of instances, the most recent MIPLIB version
 |`mod008`         | 3.0                      | 6                      |
 |`p0033`          | 3.0                      | 9                      |
 |`bell5`          | 3.0                      | 16                      |
-|`lp41`           | 2.0                      | 24                      |
+|`lp4l`           | 2.0                      | 24                      |
 |`vpm2`           | 4.0                      | 33                      |
 |`stein9`         | 2.0                      | 54                      |
 |`stein45`        | 3.0                      | 70                     |
