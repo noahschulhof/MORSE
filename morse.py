@@ -7,10 +7,17 @@ from collections.abc import Iterable
 class Morse():
     def __init__(self, instance, seed = None, weights = None):
         self.instance = instance
-        self.model = gp.read(instance)
+
+        self.orig_model = gp.read(instance)
+        self.orig_obj = self.orig_model.getObjective()
+        self.orig_obj_coeffs = [self.orig_obj.getCoeff(i) for i in range(self.orig_obj.size())]
+
+        self.model = self.orig_model.copy()
         self.obj_function = self.model.getObjective()
         self.obj_vars = [self.obj_function.getVar(i) for i in range(self.obj_function.size())]
         self.obj_coeffs = [self.obj_function.getCoeff(i) for i in range(self.obj_function.size())]
+
+        self.contains_continuous = any([var.vtype == 'C' for var in self.obj_vars])
 
         if seed:
             assert isinstance(seed, int), 'Seed must be an integer.'
@@ -76,6 +83,18 @@ class Morse():
 
         # Optimize the perturbed model
         self.model.optimize()
+
+        # If the objective function contains continuous variables, check that the solution found with MORSE is optimal for the original problem
+        if self.contains_continuous:
+            self.orig_model.optimize()
+            orig_obj_val = self.orig_model.ObjVal
+
+            morse_obj_val = sum([var.X * coeff for var, coeff in zip(self.obj_vars, self.orig_obj_coeffs)])
+            
+            relative_diff = abs(morse_obj_val - orig_obj_val) / abs(orig_obj_val)
+
+            if relative_diff > self.orig_model.Params.OptimalityTol:
+                raise Exception('MORSE solution is not optimal for the original problem.')
     
 
     def record_sols(self, filepath: str) -> None:
@@ -83,7 +102,7 @@ class Morse():
 
         Args:
         -------
-            filepath: relative filepath to csv file
+            filepath: filepath to csv file
         '''
 
         # Raise error if the model is not optimized
