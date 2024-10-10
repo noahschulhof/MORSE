@@ -43,7 +43,7 @@ class Morse():
         '''
 
         # Define S as the sum of max(abs(upper bound), abs(lower bound)) for all binary/integer variables in the objective function
-        S = sum([coeff * max(abs(var.ub), abs(var.lb)) for coeff, var in zip(self.obj_coeffs, self.obj_vars) if var.vtype != 'C'])
+        S = sum([abs(coeff) * max(abs(var.ub), abs(var.lb)) for coeff, var in zip(self.obj_coeffs, self.obj_vars) if var.vtype != 'C'])
 
         # Define epsilon as 1/2S - note that this is a more 'conservative' value of epsilon than is used in the proof in the manuscript
         return 1 / (2 * S)
