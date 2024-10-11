@@ -18,6 +18,7 @@ class Morse():
         self.obj_coeffs = [self.obj_function.getCoeff(i) for i in range(self.obj_function.size())]
 
         self.contains_continuous = any([var.vtype == 'C' for var in self.obj_vars])
+        self.integer_coeffs = all([int(coeff) == coeff for coeff in self.obj_coeffs])
 
         if seed:
             assert isinstance(seed, int), 'Seed must be an integer.'
@@ -85,7 +86,7 @@ class Morse():
         self.model.optimize()
 
         # If the objective function contains continuous variables, check that the solution found with MORSE is optimal for the original problem
-        if self.contains_continuous:
+        if self.contains_continuous or not self.integer_coeffs:
             self.orig_model.optimize()
             orig_obj_val = self.orig_model.ObjVal
 
