@@ -111,4 +111,6 @@ class Morse():
             raise Exception('Model is not optimized')
 
         # Write dataframe with variable names, values, and weights, to csv at user's specified filepath
-        pd.DataFrame({'VarName': [v.VarName for v in self.obj_vars], 'Value': [v.X for v in self.obj_vars], 'Weight': self.weights}).to_csv(filepath, index = False)
+        pd.DataFrame({'VarName': [v.VarName for v in self.obj_vars],
+                      'Value': [round(v.X) if v.vtype != 'C' else v.X for v in self.obj_vars],
+                      'Weight': self.weights}).to_csv(filepath, index = False)
