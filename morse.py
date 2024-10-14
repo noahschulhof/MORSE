@@ -5,12 +5,13 @@ import pandas as pd
 from collections.abc import Iterable
 
 class Morse():
-    def __init__(self, instance, seed = None, weights = None):
+    def __init__(self, instance, seed = None, weights = None, orig_obj_val = None):
         self.instance = instance
 
         self.orig_model = gp.read(instance)
         self.orig_obj = self.orig_model.getObjective()
         self.orig_obj_coeffs = [self.orig_obj.getCoeff(i) for i in range(self.orig_obj.size())]
+        self.orig_obj_val = orig_obj_val
 
         self.model = self.orig_model.copy()
         self.obj_function = self.model.getObjective()
@@ -65,7 +66,7 @@ class Morse():
             self.weights = [rm.uniform(1 - epsilon, 1 + epsilon) if var.vtype != 'C' else 1 for var in self.obj_vars]
 
         # Map weights to coefficients in the objective function, set new model objective
-        self.model.setObjective(quicksum(weight * coeff * var for weight, coeff, var in zip(self.weights, self.obj_coeffs, self.obj_vars)))
+        self.model.setObjective(quicksum(weight * coeff * var for weight, coeff, var in zip(self.weights, self.orig_obj_coeffs, self.obj_vars)))
     
 
     def solve(self) -> None:
@@ -87,16 +88,32 @@ class Morse():
 
         # If the objective function contains continuous variables, check that the solution found with MORSE is optimal for the original problem
         if self.contains_continuous or not self.integer_coeffs:
-            self.orig_model.optimize()
-            orig_obj_val = self.orig_model.ObjVal
+            # While the MORSE solution is not optimal, decrease epsilon by a factor of 10, reperturb the objective function, and reoptimize
+            while not self.check_optimality():
+                self.__init__(self.instance, orig_obj_val = self.orig_obj_val)
 
-            morse_obj_val = sum([var.X * coeff for var, coeff in zip(self.obj_vars, self.orig_obj_coeffs)])
-            
-            relative_diff = abs(morse_obj_val - orig_obj_val) / abs(orig_obj_val)
+                epsilon /= 10
 
-            if relative_diff > self.orig_model.Params.OptimalityTol:
-                raise Exception('MORSE solution is not optimal for the original problem.')
+                self.parse_objective(epsilon)
+
+                self.model.optimize()
     
+
+    def check_optimality(self) -> None:
+        ''' Check that a solution found with MORSE is optimal to the original problem.
+        '''
+        
+        if not self.orig_obj_val:
+            self.orig_model.optimize()
+
+            self.orig_obj_val = self.orig_model.ObjVal
+
+        morse_obj_val = sum([var.X * coeff for var, coeff in zip(self.obj_vars, self.orig_obj_coeffs)])
+        
+        relative_diff = abs(morse_obj_val - self.orig_obj_val) / abs(self.orig_obj_val)
+
+        return relative_diff < self.orig_model.Params.OptimalityTol
+
 
     def record_sols(self, filepath: str) -> None:
         ''' Write objective function variables, values, and weights to csv file.
