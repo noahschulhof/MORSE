@@ -129,5 +129,5 @@ class Morse():
 
         # Write dataframe with variable names, values, and weights, to csv at user's specified filepath
         pd.DataFrame({'VarName': [v.VarName for v in self.obj_vars],
-                      'Value': [round(v.X) if v.vtype != 'C' else v.X for v in self.obj_vars],
+                      'Value': list(map(lambda var: round(var.x) if abs(round(var.x) - var.x) < 0.0001 else var.x, self.obj_vars)),
                       'Weight': self.weights}).to_csv(filepath, index = False)
