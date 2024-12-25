@@ -49,6 +49,5 @@ To execute these scripts, open `MadHitter.Rproj` in `Rstudio` and select the des
 |6-8      |`unique_sols.qmd`|
 |9        |`unique_tabular.qmd`|
 |13-14    |`shannon.qmd`|
-|15       |`obj.qmd`|
 
 To execute these scripts, open `MIPLIB.Rproj` in `RStudio` and select the desired script from the right panel.
