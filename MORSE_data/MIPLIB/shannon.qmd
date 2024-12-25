@@ -1,8 +1,18 @@
 ```{r}
 library(tidyverse)
+library(digest)
 ```
 
 ```{r}
+entropy <- function(x){
+  freq <- table(x)
+  
+  prob <- freq/sum(freq)
+  
+  -sum(prob * log2(prob))
+                   
+}
+
 merged <- tibble()
 
 for (instance in list.files('unique_results')){
@@ -16,19 +26,13 @@ for (instance in list.files('unique_results')){
     weight = 'MORSE'
   }
   
-  data <- read.delim(paste0('unique_results/',
+  data <- read_csv(paste0('unique_results/',
                             instance), 
-                     sep = '\n',
-                     header = FALSE)
-  
-  freq <- table(data)
-  
-  prob <- freq/sum(freq)
-  
-  entropy <- -sum(prob * log2(prob))
+                     col_names = FALSE)
   
   merged <- rbind(merged,
-                  tibble(shannon = entropy,
+                  tibble(shannon = entropy(data %>% apply(1, digest)),
+                         avg_shannon = mean(apply(data, 2, entropy)),
                          Weights = weight,
                          instance = name))
   
@@ -49,17 +53,20 @@ merged %>%
   mutate(label = ifelse(shannon == 0,
                         NA,
                         round(shannon,
-                              3))) %>%
+                              3)),
+         vjust = ifelse(shannon < 0.1,
+                        1.01,
+                        1.4)) %>%
   ggplot(aes(Weights,
              shannon,
              fill = Weights,
              label = label)) +
   geom_bar(stat = 'identity',
            color = 'black') +
-  geom_text(position = 'dodge',
+  geom_text(aes(vjust = vjust),
+            position = 'dodge',
             fontface = 'bold',
-            size = 7,
-            vjust = 1.15,
+            size = 8,
             na.rm = TRUE) +
   scale_fill_brewer(palette = 'Set1',
                     labels = c('MORSE',
@@ -67,7 +74,7 @@ merged %>%
   facet_wrap(~factor(instance, order_by_max),
              scales = 'free_y',
              ncol = 4) +
-  theme_minimal() +
+  theme_pubr() +
   labs(x = NULL,
        y = 'Shannon Entropy',
        title = 'Shannon Entropy vs. Optimization Method',
@@ -75,7 +82,9 @@ merged %>%
   theme(plot.title = element_text(hjust = 0.5,
                                   size = 24),
         axis.title = element_text(size = 18),
-        axis.text = element_text(size = 14),
+        axis.text.y = element_text(size = 14),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
         strip.background = element_rect(fill = 'grey90'),
         strip.text = element_text(face = 'bold',
                                   size = 14),
@@ -88,65 +97,34 @@ ggsave('plots/shannon.png', width = 12, height = 16, units = 'in', bg = 'white')
 ```
 
 ```{r}
-entropy <- function(x){
-  freq <- table(x)
-  
-  prob <- freq/sum(freq)
-  
-  return (-sum(prob * log2(prob)))
-                   
-}
-
-merged_new <- tibble()
-
-for (instance in list.files('unique_results')){
-  name <- paste('MIPLIB:',
-                strsplit(instance, "_", fixed = TRUE)[[1]][1])
-  
-  if (grepl('uniform', instance)){
-    weight = 'Uniform\nWeights'
-  }
-  else {
-    weight = 'MORSE'
-  }
-  
-  data <- read.delim(paste0('unique_results/',
-                            instance), 
-                     sep = ',',
-                     header = FALSE,
-                     colClasses = 'character')
-  
-  merged_new <- rbind(merged_new,
-                      tibble(instance = name,
-                             Weights = weight,
-                             shannon = mean(apply(data, 2, entropy))))
-}
-```
-
-```{r}
-order_by_max_new <- merged_new %>%
+order_by_max_new <- merged %>%
   group_by(instance) %>%
-  summarize(max_shannon = max(shannon)) %>%
+  summarize(max_shannon = max(avg_shannon)) %>%
   arrange(desc(max_shannon)) %>%
   pull(instance)
 ```
 
 ```{r}
-merged_new %>% 
-  mutate(label = ifelse(shannon == 0,
+merged %>% 
+  mutate(label = ifelse(avg_shannon == 0,
                         NA,
-                        round(shannon,
-                              3))) %>%
+                        ifelse(avg_shannon < 0.001,
+                               '<0.001',
+                               round(avg_shannon,
+                              3))),
+         vjust = ifelse(avg_shannon < 0.001,
+                        -0.2,
+                        1.4)) %>%
   ggplot(aes(Weights,
-             shannon,
+             avg_shannon,
              fill = Weights,
              label = label)) +
   geom_bar(stat = 'identity',
            color = 'black') +
-  geom_text(position = 'dodge',
+  geom_text(aes(vjust = vjust),
+            position = 'dodge',
             fontface = 'bold',
             size = 8,
-            vjust = 1.3,
             na.rm = TRUE) +
   scale_fill_brewer(palette = 'Set1',
                     labels = c('MORSE',
@@ -154,7 +132,7 @@ merged_new %>%
   facet_wrap(~factor(instance, order_by_max_new),
              scales = 'free_y',
              ncol = 4) +
-  theme_minimal() +
+  theme_pubr() +
   labs(x = NULL,
        y = 'Average Shannon Entropy',
        title = 'Average Shannon Entropy vs. Optimization Method',
@@ -162,7 +140,9 @@ merged_new %>%
   theme(plot.title = element_text(hjust = 0.5,
                                   size = 24),
         axis.title = element_text(size = 18),
-        axis.text = element_text(size = 14),
+        axis.text.x = element_blank(),
+        axis.text.y = element_text(size = 14),
+        axis.ticks.x = element_blank(),
         strip.background = element_rect(fill = 'grey90'),
         strip.text = element_text(face = 'bold',
                                   size = 14),
