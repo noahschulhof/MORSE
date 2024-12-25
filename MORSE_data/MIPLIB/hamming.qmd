@@ -4,29 +4,28 @@ library(ggpubr)
 ```
 
 ```{r}
-instance <- 'noswot'
+instances <- c('lp4l', 'noswot', 'p0033')
 
-instance_data <- read_csv(paste0('hamming_results/',
+for (instance in instances){
+  instance_data <- read_csv(paste0('hamming_results/',
                                    instance,
                                    '.txt')) %>% 
   mutate(weights = str_replace(weights, 'random', 'MORSE'),
          weights = str_replace(weights, 'uniform', 'Uniform Weights'),
          Method = str_replace(Method, 'Solution Pool', 'Seed-Based'))
 
-instance_data <- instance_data %>% 
-  mutate(instance = rep(paste('MIPLIB:',
-                              instance),
-                        nrow(instance_data)))
+  instance_data <- instance_data %>% 
+    mutate(instance = rep(paste('MIPLIB:',
+                                instance),
+                          nrow(instance_data)))
   
-```
-```{r}
-smoothed_lines <- instance_data %>%
-  group_by(Method, weights, instance) %>%
-  do(model = loess(avg_hamming ~ sol_number, data = .))
+  smoothed_lines <- instance_data %>%
+    group_by(Method, weights, instance) %>%
+    do(model = loess(avg_hamming ~ sol_number, data = .))
 
-points <- tibble()
-
-instance_data <- smoothed_lines %>% 
+  points <- tibble()
+  
+  instance_data <- smoothed_lines %>% 
   rowwise() %>% 
   do({
     tibble(Method = rep(.$Method,
@@ -43,14 +42,12 @@ instance_data <- smoothed_lines %>%
                        'instance',
                        'sol_number'))
   })
-
-instance_data$p <- ifelse(seq_along(instance_data$p) %% 10 == 0,
+  
+  instance_data$p <- ifelse(seq_along(instance_data$p) %% 10 == 0,
                           instance_data$p,
                           NA)
-```
-
-```{r}
-instance_data %>% 
+  
+  instance_data %>% 
   ggplot(aes(sol_number,
              avg_hamming,
              color = weights,
@@ -66,10 +63,10 @@ instance_data %>%
   scale_y_continuous(expand = c(0, 0),
                      limits = c(0, NA)) +
   scale_color_brewer(palette = 'Set1') +
-  theme_minimal() +
+  theme_pubr() +
   labs(x = '\nRun Number',
-       y = 'Average Pairwise Hamming Distance Proportion',
-       title = 'Average Pairwise Hamming Distance Proportion vs. Run Number',
+       y = 'Average Normalized Pairwise Hamming Distance',
+       title = 'Average Normalized Pairwise Hamming Distance vs. Run Number',
        color = 'Optimization Method',
        shape = 'Optimization Method') +
   theme(plot.title = element_text(hjust = 0.5,
@@ -81,18 +78,23 @@ instance_data %>%
                                   size = 12),
         axis.text = element_text(size = 12),
         legend.position = 'top',
-        legend.direction = 'horizontal') +
+        legend.direction = 'horizontal',
+        panel.grid.major = element_line(color = 'gray', linewidth = 0.5),
+        panel.grid.minor = element_line(color = 'lightgray', linewidth = 0.25)) +
   ggh4x::facet_nested_wrap(. ~ factor(instance) +
                       factor(Method,
                              levels = c('Seed-Based',
                                         'Random Shuffle',
                                         'Greedy')))
-
-ggsave(paste0('plots/',
+  
+  ggsave(paste0('plots/',
               instance,
               '_hamming.png'),
-       bg = 'white',
-       width = 7.29,
-       height = 4.5,
-       units = 'in')
+         bg = 'white',
+         width = 7.29,
+         height = 4.5,
+         units = 'in')
+  
+
+}
 ```

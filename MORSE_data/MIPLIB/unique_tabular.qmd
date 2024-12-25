@@ -1,49 +1,37 @@
 ```{r}
 library(tidyverse)
+library(digest)
 library(ggpubr)
 library(ggh4x)
 ```
 
 ```{r}
 instances <- unique(str_split_fixed(list.files('unique_results'), '_', 2)[,1])
-```
 
-```{r}
 results <- tibble()
 
 for (instance in instances){
-  results_uniform <- read_delim(paste0('unique_results/',
-                                           instance,
-                                           '_uniform.txt'),
-                                    delim = '\n', col_names = FALSE)
-      results_random <- read_delim(paste0('unique_results/',
-                                          instance,
-                                          '_random.txt'),
-                                   delim = '\n', col_names = FALSE)
-
-  results_uniform$run_number = seq(1, nrow(results_uniform))
+  sols_uniform <- read_csv(paste0('unique_results/',
+                                     instance,
+                                     '_uniform.txt'),
+                              col_names = FALSE) %>% 
+    apply(1, digest)
   
-  results_random$run_number = seq(1, nrow(results_random))
+  sols_random <- read_csv(paste0('unique_results/',
+                                 instance,
+                                 '_random.txt'),
+                          col_names = FALSE) %>% 
+    apply(1, digest)
   
-  num_sols_random <- c()
-  num_sols_uniform <- c()
-  for (i in seq(1, nrow(results_random))){
-    current_random <- results_random %>% 
-      filter(run_number <= i)
-    current_uniform <- results_uniform %>% 
-      filter(run_number <= i)
+  results_uniform <- tibble(run_number = seq(1, length(sols_uniform)))
+  results_random <- tibble(run_number = seq(1, length(sols_random)))
     
-    num_sols_random <- append(num_sols_random, length(unique(current_random$X1)))
-    num_sols_uniform <- append(num_sols_uniform, length(unique(current_uniform$X1)))
-  }
+  results_random$num_sol <- sapply(results_random$run_number, function(x) length(unique(head(sols_random, x))))
+  results_uniform$num_sol <- sapply(results_uniform$run_number, function(x) length(unique(head(sols_uniform, x))))
   
-  results_uniform$num_sol <- num_sols_uniform
-  results_random$num_sol <- num_sols_random
-  
-  row1 = tibble(X1 = '0',
-                run_number = 0,
+  row1 = tibble(run_number = 0,
                 num_sol = 0)
-  
+
   results_uniform <- add_row(row1,
                              results_uniform)
   
@@ -63,26 +51,55 @@ for (instance in instances){
 }
 ```
 
+
+
+
 ```{r}
-instance_counts <- table(results$instance)
+maxes <- results %>% 
+  group_by(instance) %>% 
+  summarize(max_sol = max(num_sol))
 
-nullify <- function(run_num, num_sol, instance){
-  nrows <- instance_counts[instance]
-  
-  if (run_num %% ((nrows - 2)/20) == 0){
-    return(num_sol)
-  }
-  return(NA)
-}
 
-results$p <- unlist(Map(nullify, results$run_number, results$num_sol, results$instance))
+filtered <- results %>% 
+  pivot_wider(id_cols = c(instance, run_number),
+              values_from = num_sol,
+              names_from = weights) %>% 
+  janitor::clean_names() %>% 
+  left_join(maxes, by = 'instance') %>% 
+  filter(!(uniform_weights == max_sol &
+          morse == max_sol &
+           row_number() > 2 &
+           lag((uniform_weights == max_sol) & (morse == max_sol)))) %>% 
+  pivot_longer(cols = c(uniform_weights, morse),
+               names_to = 'weights',
+               values_to = 'num_sol')
+
 ```
 
 ```{r}
-order_by_max <- results %>%
-  group_by(instance) %>%
-  summarize(max_num_sol = max(num_sol)) %>%
-  arrange(desc(max_num_sol)) %>%
+cutoffs <- filtered %>% 
+  group_by(instance) %>% 
+  summarize(max_run = max(run_number)) %>% 
+  mutate(cutoff = ifelse(max_run < 10,
+                          10,
+                          ifelse(max_run < 25,
+                                 25,
+                                 ceiling(max_run/100) * 100)))
+
+results <- results %>% 
+  left_join(cutoffs, by = 'instance') %>% 
+  filter(run_number <= cutoff)
+
+results <- results %>% 
+  mutate(p = ifelse(((run_number %% (cutoff/5) == 0) & (run_number != 0)),
+         num_sol,
+         NA))
+```
+
+
+```{r}
+order_by_max <- maxes %>%
+  arrange(desc(max_sol)) %>%
   pull(instance)
 
 max_vals <- results %>%
@@ -106,9 +123,7 @@ results %>%
              aes(max_run,
                  max_val)) +
   scale_color_brewer(palette = 'Set1') +
-  scale_x_continuous(expand = c(0.02,0)) +
-  scale_y_continuous(limits = c(0, NA)) +
-  theme_minimal() +
+  theme_pubr() +
   theme(plot.title = element_text(hjust = 0.5,
                                   size = 24),
         axis.title = element_text(size = 18),
@@ -120,7 +135,9 @@ results %>%
         legend.position = 'top',
         legend.direction = 'horizontal',
         legend.text = element_text(size = 14),
-        legend.title = element_text(size = 14)) +
+        legend.title = element_text(size = 14),
+        panel.grid.major = element_line(color = 'gray', linewidth = 0.5),
+        panel.grid.minor = element_line(color = 'lightgray', linewidth = 0.25)) +
   labs(x = 'Run Number',
        y = 'Number of Distinct Solutions Found',
        title = 'Number of Distinct Solutions vs. Run Number',
@@ -130,13 +147,12 @@ results %>%
                      levels = order_by_max),
              ncol = 4,
              scales = 'free') +
-  scale_y_facet(PANEL == 11,
-                breaks = c(0, 2, 4, 6, 8, 10)) +
   scale_y_facet(PANEL == 12,
-                breaks = c(0, 3, 6, 9)) +
-  scale_y_facet(PANEL %in% c(16, 17, 18, 19, 20),
+                breaks = c(0, 5, 10)) +
+  scale_y_facet(PANEL %in% c(17, 18, 19, 20),
                 breaks = c(0, 1, 2),
                 limits = c(0, 2.25))
+  
   
 ggsave('plots/unique_sols_plot.png', width = 12, height = 14, units = 'in', bg = 'white')
 ```
