@@ -107,9 +107,7 @@ results %>%
         legend.text = element_text(size = 15),
         legend.title = element_text(size = 16),
         plot.margin = unit(c(0, 1, 0, 0),
-                           'lines'),
-        panel.grid.major = element_line(color = 'gray', linewidth = 0.5),
-        panel.grid.minor = element_line(color = 'lightgray', linewidth = 0.25)) +
+                           'lines')) +
   facet_nested_wrap(. ~ factor(instance,
                                levels = order_by_max) +
                       factor(Method,
@@ -178,9 +176,7 @@ results %>%
         legend.text = element_text(size = 15),
         legend.title = element_text(size = 16),
         plot.margin = unit(c(0, 1, 0, 0),
-                           'lines'),
-        panel.grid.major = element_line(color = 'gray', linewidth = 0.5),
-        panel.grid.minor = element_line(color = 'lightgray', linewidth = 0.25)) +
+                           'lines')) +
   facet_nested_wrap(. ~ factor(instance,
                                levels = order_by_max) +
                       factor(Method,

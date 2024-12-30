@@ -78,9 +78,7 @@ for (instance in instances){
                                   size = 12),
         axis.text = element_text(size = 12),
         legend.position = 'top',
-        legend.direction = 'horizontal',
-        panel.grid.major = element_line(color = 'gray', linewidth = 0.5),
-        panel.grid.minor = element_line(color = 'lightgray', linewidth = 0.25)) +
+        legend.direction = 'horizontal') +
   ggh4x::facet_nested_wrap(. ~ factor(instance) +
                       factor(Method,
                              levels = c('Seed-Based',
