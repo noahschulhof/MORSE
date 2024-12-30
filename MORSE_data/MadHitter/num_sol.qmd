@@ -82,9 +82,7 @@ for (dataset in datasets){
           axis.text = element_text(size = 12),
           strip.background = element_rect(fill = 'grey90'),
           strip.text = element_text(face = 'bold',
-                                    size = 12),
-          panel.grid.major = element_line(color = 'gray', linewidth = 0.5),
-          panel.grid.minor = element_line(color = 'lightgray', linewidth = 0.25)) +
+                                    size = 12)) +
     labs(x = 'Run Number',
          y = 'Number of Distinct Solutions Found',
          title = 'Number of Distinct Solutions vs. Run Number',
