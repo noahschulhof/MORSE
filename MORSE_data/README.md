@@ -22,9 +22,10 @@ This folder contains an implementation/evaluation of the CPLEX [`populate`](http
 |Figure(s)|Script|
 |---------|------|
 |10-11     |`num_sol.qmd`|
-|12       |`shannon.qmd`|
+|12|`num_sol_tabular.qmd`|
+|13       |`shannon.qmd`|
 
-To execute these scripts, open `MadHitter.Rproj` in `Rstudio` and select the desired script from the right panel.
+To execute these scripts, open `MadHitter.Rproj` in `RStudio` and select the desired script from the right panel.
 
 
 ## MIPLIB
@@ -48,6 +49,6 @@ To execute these scripts, open `MadHitter.Rproj` in `Rstudio` and select the des
 |4-5      |`hamming_split.qmd`|
 |6-8      |`unique_sols.qmd`|
 |9        |`unique_tabular.qmd`|
-|13-14    |`shannon.qmd`|
+|14-15    |`shannon.qmd`|
 
 To execute these scripts, open `MIPLIB.Rproj` in `RStudio` and select the desired script from the right panel.
