@@ -81,8 +81,8 @@ for (instance in instances){
           legend.position = 'top',
           legend.direction = 'horizontal') +
     labs(x = 'Run Number',
-         y = 'Number of Distinct Solutions Found',
-         title = 'Number of Distinct Solutions vs. Run Number',
+         y = 'Number of Distinct Optima Found',
+         title = 'Number of Distinct Optima vs. Run Number',
          color = 'Optimization Method',
          shape = 'Optimization Method') +
     facet_wrap(~instance)

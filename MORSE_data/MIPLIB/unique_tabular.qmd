@@ -137,8 +137,8 @@ results %>%
         legend.text = element_text(size = 14),
         legend.title = element_text(size = 14)) +
   labs(x = 'Run Number',
-       y = 'Number of Distinct Solutions Found',
-       title = 'Number of Distinct Solutions vs. Run Number',
+       y = 'Number of Distinct Optima Found',
+       title = 'Number of Distinct Optima vs. Run Number',
        color = 'Optimization Method',
        shape = 'Optimization Method') +
   facet_wrap(~factor(instance,
