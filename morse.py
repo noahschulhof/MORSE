@@ -3,6 +3,8 @@ from gurobipy import GRB, quicksum
 import random as rm
 import pandas as pd
 from collections.abc import Iterable
+from math import lcm
+from fractions import Fraction
 
 class Morse():
     def __init__(self, instance, seed = None, weights = None, orig_obj_val = None):
@@ -34,8 +36,25 @@ class Morse():
             assert all(isinstance(x, (int, float)) for x in weights), 'Perturbation vector elements must be float or int'
         
         self.weights = weights
-    
 
+    
+    def scale_objective(self) -> None:
+        ''' Scale objective function to eliminate non-integral coefficients.
+        '''
+
+        # Convert each objective function coefficient to a fraction and store the denominators
+        denoms = [Fraction(coeff).limit_denominator().denominator for coeff in self.obj_coeffs]
+        
+        # Define the scaling factor as the least common multiple of the denominators
+        scaler = lcm(*denoms)
+
+        # Scale the objective function coefficients
+        self.obj_coeffs = [scaler * coeff for coeff in self.obj_coeffs]
+
+        # Update the objective function with the scaled coefficients
+        self.model.setObjective(quicksum(coeff * var for coeff, var in zip(self.obj_coeffs, self.obj_vars)))
+
+    
     def generate_epsilon(self) -> float:
         ''' Generate value of epsilon.
         
@@ -47,7 +66,7 @@ class Morse():
         # Define S as the sum of max(abs(upper bound), abs(lower bound)) for all binary/integer variables in the objective function
         S = sum([abs(coeff) * max(abs(var.ub), abs(var.lb)) for coeff, var in zip(self.obj_coeffs, self.obj_vars) if var.vtype != 'C'])
 
-        # Define epsilon as 1/2S - note that this is a more 'conservative' value of epsilon than is used in the proof in the manuscript
+        # Define epsilon as 1/2S
         return 1 / (2 * S)
 
 
@@ -66,7 +85,7 @@ class Morse():
             self.weights = [rm.uniform(1 - epsilon, 1 + epsilon) if var.vtype != 'C' else 1 for var in self.obj_vars]
 
         # Map weights to coefficients in the objective function, set new model objective
-        self.model.setObjective(quicksum(weight * coeff * var for weight, coeff, var in zip(self.weights, self.orig_obj_coeffs, self.obj_vars)))
+        self.model.setObjective(quicksum(weight * coeff * var for weight, coeff, var in zip(self.weights, self.obj_coeffs, self.obj_vars)))
     
 
     def solve(self) -> None:
@@ -76,6 +95,9 @@ class Morse():
         if self.seed:
             # Set Gurobi seed
             self.model.setParam('Seed', self.seed)
+
+        # Scale the objective function to eliminate non-integral coefficients
+        self.scale_objective()
 
         # Generate value of epsilon for perturbation
         epsilon = self.generate_epsilon()
@@ -99,7 +121,7 @@ class Morse():
                 self.model.optimize()
     
 
-    def check_optimality(self) -> None:
+    def check_optimality(self) -> bool:
         ''' Check that a solution found with MORSE is optimal to the original problem.
         '''
         
