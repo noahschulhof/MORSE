@@ -84,8 +84,8 @@ for (dataset in datasets){
           strip.text = element_text(face = 'bold',
                                     size = 12)) +
     labs(x = 'Run Number',
-         y = 'Number of Distinct Solutions Found',
-         title = 'Number of Distinct Solutions vs. Run Number',
+         y = 'Number of Distinct Optima Found',
+         title = 'Number of Distinct Optima vs. Run Number',
          color = 'Optimization Method',
          shape = 'Optimization Method') +
     facet_grid(~dataset)
