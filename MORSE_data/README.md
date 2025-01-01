@@ -22,9 +22,10 @@ This folder contains an implementation/evaluation of the CPLEX [`populate`](http
 |Figure(s)|Script|
 |---------|------|
 |10-11     |`num_sol.qmd`|
-|12       |`shannon.qmd`|
+|12|`num_sol_tabular.qmd`|
+|13       |`shannon.qmd`|
 
-To execute these scripts, open `MadHitter.Rproj` in `Rstudio` and select the desired script from the right panel.
+To execute these scripts, open `MadHitter.Rproj` in `RStudio` and select the desired script from the right panel.
 
 
 ## MIPLIB
@@ -33,11 +34,12 @@ To execute these scripts, open `MadHitter.Rproj` in `Rstudio` and select the des
 - `mps_files` contains the raw input files (MIPLIB instances) on which testing was performed.
 
 ### Data
-|Folder|Description|
+|Folder/File|Description|
 |------|-----------|
 |`obj_vals`|Contains the optimized objective value for each instance, as well as the objective value for each run for each instance optimized with MORSE. 
 |`unique_results`| Contains the values of post-optimization objective function variables for instances optimized with and without MORSE.|
 |`hamming_results`| Contains average pairwise Hamming distances between the solution vectors in `unique_results` derived using the three solution pool ordering methods described in the manuscript.|
+|`scip_counts.csv` | Contains the number of distinct optima for each MIPLIB instance tested, as enumerated by the PySCIPOpt [count](https://scipopt.github.io/PySCIPOpt/docs/html/classpyscipopt_1_1scip_1_1Model.html#a5eb880efb244834d39c062297388252b) function.|
 
 
 ### Scripts
@@ -47,7 +49,6 @@ To execute these scripts, open `MadHitter.Rproj` in `Rstudio` and select the des
 |4-5      |`hamming_split.qmd`|
 |6-8      |`unique_sols.qmd`|
 |9        |`unique_tabular.qmd`|
-|13-14    |`shannon.qmd`|
-|15       |`obj.qmd`|
+|14-15    |`shannon.qmd`|
 
-To execute these scripts, open `MIPLIB.Rproj` in `Rstudio` and select the desired script from the right panel.
+To execute these scripts, open `MIPLIB.Rproj` in `RStudio` and select the desired script from the right panel.

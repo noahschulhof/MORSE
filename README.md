@@ -176,9 +176,9 @@ The table below gives the full list of instances, the most recent MIPLIB version
 |`bell3a`         | 3.0                      | 5                       |
 |`mod008`         | 3.0                      | 6                      |
 |`p0033`          | 3.0                      | 9                      |
-|`bell5`          | 3.0                      | 16                      |
 |`lp4l`           | 2.0                      | 24                      |
 |`vpm2`           | 4.0                      | 33                      |
+|`khb05250` | 3.0 | 51 |
 |`stein9`         | 2.0                      | 54                      |
 |`stein45`        | 3.0                      | 70                     |
 |`supportcase14`  | 6.0                      | 256                     |
